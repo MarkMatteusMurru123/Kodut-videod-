@@ -41,7 +41,7 @@ namespace Soft.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Measure");
+                    b.ToTable("Measures");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
