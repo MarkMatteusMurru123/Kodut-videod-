@@ -1,36 +1,24 @@
 ﻿using System.Threading.Tasks;
+using Abc.Domain.Quantity;
+using Abc.Pages.Quantity;
 using Facade.Quantity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace Soft.Areas.Quantity.Pages.Measures
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : MeasuresPage
     {
-        private readonly Soft.Data.ApplicationDbContext _context;
-
-        public DetailsModel(Soft.Data.ApplicationDbContext context)
+        public DetailsModel(IMeasuresRepository r) : base(r)
         {
-            _context = context;
         }
-
-        public MeasureView MeasureView { get; set; }
-
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            MeasureView = await _context.Measures.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (MeasureView == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+            Item = MeasureViewFactory.Create(await Data.Get(id));
+            if (Item == null) return NotFound();
             return Page();
         }
+
+        
     }
 }

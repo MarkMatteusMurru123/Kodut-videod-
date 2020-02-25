@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
 using Facade.Quantity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Soft.Areas.Quantity.Pages.Measures
 {
@@ -23,7 +21,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
             if (!ModelState.IsValid) return Page();
            
 
-            await Data.Update(MeasureViewFactory.Create(MeasureView));
+            await Data.Add(MeasureViewFactory.Create(Item));
 
             return RedirectToPage("./Index");
         }

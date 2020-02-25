@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Abc.Data.Quantity;
+﻿using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
 
 namespace Facade.Quantity
@@ -23,15 +21,17 @@ namespace Facade.Quantity
         }
         public static MeasureView Create(Measure o)
             {
-                var v = new MeasureView();
-                v.ID = o.Data.ID;
-                v.Name = o.Data.Name;
-                v.Code = o.Data.Code;
-                v.Definition = o.Data.Definition;
-                v.Validfrom = o.Data.Validfrom;
-                v.ValidTo = o.Data.ValidTo;
+            var v = new MeasureView
+            {
+                ID = o.Data.ID,
+                Name = o.Data.Name,
+                Code = o.Data.Code,
+                Definition = o.Data.Definition,
+                Validfrom = o.Data.Validfrom,
+                ValidTo = o.Data.ValidTo
+            };
 
-                return v;
+            return v;
             }
     }
 }
