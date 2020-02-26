@@ -15,7 +15,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
         public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null) return NotFound();
-            Item = MeasureViewFactory.Create(await Data.Get(id));
+            Item = MeasureViewFactory.Create(await db.Get(id));
             if (Item == null) return NotFound();
             return Page();
         }
@@ -29,7 +29,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
                 return Page();
             }
 
-            await Data.Update(MeasureViewFactory.Create(Item));
+            await db.Update(MeasureViewFactory.Create(Item));
 
             return RedirectToPage("./Index");
         }

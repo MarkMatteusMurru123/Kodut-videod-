@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
@@ -11,9 +12,12 @@ namespace Soft.Areas.Quantity.Pages.Measures
         public IndexModel(IMeasuresRepository r) : base(r)
         {
         }
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder)
         {
-            var l = await Data.Get();
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            db.SortOrder = sortOrder;
+            var l = await db.Get();
             Items = new List<MeasureView>();
             foreach (var e in l)
             {
@@ -23,6 +27,8 @@ namespace Soft.Areas.Quantity.Pages.Measures
 
         }
 
-       
+        public string DateSort { get; set; }
+
+        public string NameSort { get; set; }
     }
 }

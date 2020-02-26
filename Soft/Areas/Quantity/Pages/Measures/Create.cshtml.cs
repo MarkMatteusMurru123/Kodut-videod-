@@ -21,7 +21,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
             if (!ModelState.IsValid) return Page();
            
 
-            await Data.Add(MeasureViewFactory.Create(Item));
+            await db.Add(MeasureViewFactory.Create(Item));
 
             return RedirectToPage("./Index");
         }
