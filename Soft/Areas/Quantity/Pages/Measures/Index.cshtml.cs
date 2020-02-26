@@ -12,13 +12,27 @@ namespace Soft.Areas.Quantity.Pages.Measures
         public IndexModel(IMeasuresRepository r) : base(r)
         {
         }
-        public async Task OnGetAsync(string sortOrder, string searchString)
+        public async Task OnGetAsync(string sortOrder,
+            string currentFilter, string searchString, int? pageIndex)
         {
+            CurrentSort = sortOrder;
             NameSort = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            CurrentFilter = searchString;
             db.SortOrder = sortOrder;
-            SearchString = searchString;
+            SearchString = CurrentFilter;
             db.SearchString = SearchString;
+            db.PageIndex = pageIndex ?? 1;
+            PageIndex = db.PageIndex;
             var l = await db.Get();
             Items = new List<MeasureView>();
             foreach (var e in l)
@@ -26,6 +40,9 @@ namespace Soft.Areas.Quantity.Pages.Measures
                 Items.Add(MeasureViewFactory.Create(e));
 
             }
+
+            HasNextPage = db.HasNextPage;
+            HasPreviousPage = db.HasPreviousPage;
 
         }
 
