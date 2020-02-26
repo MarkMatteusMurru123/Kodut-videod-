@@ -8,14 +8,13 @@ namespace Soft.Areas.Quantity.Pages.Measures
 {
     public class IndexModel : MeasuresPage
     {
-        public string SearchString;
     
         public IndexModel(IMeasuresRepository r) : base(r)
         {
         }
         public async Task OnGetAsync(string sortOrder, string searchString)
         {
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            NameSort = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             db.SortOrder = sortOrder;
             SearchString = searchString;
@@ -31,7 +30,12 @@ namespace Soft.Areas.Quantity.Pages.Measures
         }
 
         public string DateSort { get; set; }
-
         public string NameSort { get; set; }
+        public bool HasPreviousPage { get; set; }
+        public bool HasNextPage { get; set; }
+        public int PageIndex { get; set; }
+        public string CurrentSort { get; set; }
+        public string SearchString;
+        public string CurrentFilter { get; set; }
     }
 }
