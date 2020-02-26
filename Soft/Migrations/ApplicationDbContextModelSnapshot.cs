@@ -35,7 +35,7 @@ namespace Soft.Migrations
                     b.Property<DateTime?>("ValidTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Validfrom")
+                    b.Property<DateTime?>("ValidFrom")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");

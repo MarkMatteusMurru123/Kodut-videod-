@@ -13,7 +13,7 @@ namespace Facade.Quantity
                 Name = v.Name,
                 Code = v.Code,
                 Definition = v.Definition,
-                Validfrom = v.Validfrom,
+                ValidFrom = v.ValidFrom,
                 ValidTo = v.ValidTo
             };
             return new Measure(d);
@@ -27,7 +27,7 @@ namespace Facade.Quantity
                 Name = o.Data.Name,
                 Code = o.Data.Code,
                 Definition = o.Data.Definition,
-                Validfrom = o.Data.Validfrom,
+                ValidFrom = o.Data.ValidFrom,
                 ValidTo = o.Data.ValidTo
             };
 

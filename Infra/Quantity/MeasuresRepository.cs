@@ -13,6 +13,8 @@ namespace Abc.Infra.Quantity
     {
         private readonly QuantityDbcontext db;
         public string SortOrder { get; set; }
+        public string SearchString { get; set; }
+
         public MeasuresRepository(QuantityDbcontext c)
         {
             db = c;
@@ -20,10 +22,22 @@ namespace Abc.Infra.Quantity
         }
         public async Task<List<Measure>> Get()
         {
-            var list = await CreateSorted().ToListAsync();
+            var list = await CreateFiltered(CreateSorted()).ToListAsync();
             return list.Select(e => new Measure(e)).ToList();
         }
 
+        private IQueryable<MeasureData> CreateFiltered(IQueryable<MeasureData> set)
+        {
+            if (string.IsNullOrEmpty(SearchString)) return set;
+            return set.Where(s => s.Name.Contains(SearchString) 
+                                  || s.Code.Contains(SearchString)
+                                  || s.ID.Contains(SearchString)
+                                  || s.Definition.Contains(SearchString)
+                                  || s.ValidFrom.ToString().Contains(SearchString)
+                                  || s.ValidTo.ToString().Contains(SearchString)
+                                  );
+
+        }
         private IQueryable<MeasureData> CreateSorted()
         {
             IQueryable<MeasureData> measures = from s in db.Measures
@@ -35,10 +49,10 @@ namespace Abc.Infra.Quantity
                     measures= measures.OrderByDescending(s => s.Name);
                     break;
                 case "Date":
-                    measures = measures.OrderBy(s => s.Validfrom);
+                    measures = measures.OrderBy(s => s.ValidFrom);
                     break;
                 case "date_desc":
-                    measures = measures.OrderByDescending(s => s.Validfrom);
+                    measures = measures.OrderByDescending(s => s.ValidFrom);
                     break;
                 default:
                     measures = measures.OrderBy(s => s.Name);
@@ -76,7 +90,7 @@ namespace Abc.Infra.Quantity
             d.Name = obj.Data.Name;
             d.Definition = obj.Data.Definition;
             d.ValidTo = obj.Data.ValidTo;
-            d.Validfrom = obj.Data.Validfrom;
+            d.ValidFrom = obj.Data.ValidFrom;
             db.Measures.Update(d);
 
             try
