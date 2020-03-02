@@ -9,7 +9,7 @@ namespace Tests
         public override void TestInitialize()
         {
             obj = new TClass();
-            type = GetType();
+            type = obj.GetType();
         }
         [TestMethod]
         public void CanCreateTest()
