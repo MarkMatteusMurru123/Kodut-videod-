@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\Downloads\Proge ajalogi (2).xlsx = ..\..\..\Downloads\Proge ajalogi (2).xlsx
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{09941439-62E0-4A95-A297-BB87C087DDDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{13C2A14C-3A9F-4382-B145-91DF67F363E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C2A14C-3A9F-4382-B145-91DF67F363E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C2A14C-3A9F-4382-B145-91DF67F363E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09941439-62E0-4A95-A297-BB87C087DDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09941439-62E0-4A95-A297-BB87C087DDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09941439-62E0-4A95-A297-BB87C087DDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09941439-62E0-4A95-A297-BB87C087DDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
