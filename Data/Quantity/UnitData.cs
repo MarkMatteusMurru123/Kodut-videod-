@@ -5,7 +5,7 @@ using Abc.Data.Common;
 
 namespace Abc.Data.Quantity
 {
-    class UnitData : DefinedEntityData
+    public class UnitData : DefinedEntityData
     {
         public string MeasureId { get; set; }
     }
