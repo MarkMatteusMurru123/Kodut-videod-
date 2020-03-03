@@ -13,5 +13,10 @@ namespace Tests.Data.Common
             base.TestInitialize();
             obj = new TestClass();
         }
+        [TestMethod]
+        public void IDTest()
+        {
+            isNullableProperty(() => obj.ID, x => obj.ID = x);
+        }
     }
 }

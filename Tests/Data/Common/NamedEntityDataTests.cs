@@ -1,4 +1,4 @@
-using Abc.Data.Common;
+ using Abc.Data.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Data.Common
@@ -12,6 +12,16 @@ namespace Tests.Data.Common
         {
             base.TestInitialize();
             obj = new TestClass();
+        }
+        [TestMethod]
+        public void NameTest()
+        {
+            isNullableProperty(() => obj.Name, x => obj.Name = x);
+        }
+        [TestMethod]
+        public void CodeTest()
+        {
+            isNullableProperty(() => obj.Code, x => obj.Code = x);
         }
     }
 }
