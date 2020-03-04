@@ -1,23 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
-using System.Threading.Tasks;
-
-namespace Abc.Domain.Common
+﻿namespace Abc.Domain.Common
 {
-    public interface IRepository<T>
+    public interface IRepository<T> : ICrudMethods<T>, IPaging, ISearching, ISorting
     {
-        Task<List<T>> Get();
-        Task<T> Get(string ID);
-        Task Delete(string ID);
-        Task Add(T obj);
-        Task Update(T obj);
-        string SortOrder { get; set; }
-        string SearchString { get; set; }
-        int PageIndex { get; set; }
-        bool HasNextPage { get; set; }
-        bool HasPreviousPage { get; set; }
-
-
+       
+        
 
 
     }

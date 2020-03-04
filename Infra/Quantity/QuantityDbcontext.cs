@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Abc.Data.Quantity;
+﻿using Abc.Data.Quantity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra.Quantity
