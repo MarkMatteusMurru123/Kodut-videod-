@@ -2,8 +2,6 @@
 {
     public interface IRepository<T> : ICrudMethods<T>, IPaging, ISearching, ISorting
     {
-       
-        
 
 
     }
