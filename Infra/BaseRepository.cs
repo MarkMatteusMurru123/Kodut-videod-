@@ -28,7 +28,7 @@ namespace Abc.Infra
         public async Task<TDomain> Get(string ID)
         {
             if (ID is null) return new TDomain();
-            var d = await dbSet.FirstOrDefaultAsync(m => IsThisRecord(m, ID));
+            var d = await GetData(ID);
             var obj = new TDomain
             {
                 Data = d
@@ -37,11 +37,7 @@ namespace Abc.Infra
 
         }
 
-        protected virtual bool IsThisRecord(TData d, string id)
-        {
-            if (d is UniqueEntityData data) return data.ID == id;
-            return true;
-        }
+        protected abstract Task<TData> GetData(string id);
 
         public async Task Delete(string ID)
         { 

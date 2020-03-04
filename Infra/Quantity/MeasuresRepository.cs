@@ -7,12 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra.Quantity
 {
-    public class MeasuresRepository: PaginatedRepository<Measure, MeasureData>, IMeasuresRepository
+    public class MeasuresRepository: UniqueEntityRepository <Measure, MeasureData>, IMeasuresRepository
     {
 
         public MeasuresRepository(QuantityDbcontext c) : base(c, c.Measures)
         {
         }
+
+        
         public override async Task<List<Measure>> Get()
         {
             var list = await CreatePaged(CreateFiltered(CreateSorted()));
