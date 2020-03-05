@@ -16,7 +16,12 @@ namespace Soft.Areas.Quantity.Pages.Measures
         {
             CurrentSort = sortOrder;
             NameSort = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            IdSort = sortOrder == "Id" ? "Id_desc" : "Id";
+            CodeSort = sortOrder == "Code" ? "Code_desc" : "Code";
+            DefinitionSort = sortOrder == "Definition" ? "Definition_desc" : "Definition";
+            ValidFromSort = sortOrder == "ValidFrom" ? "ValidFrom_desc" : "ValidFrom";
+            ValidToSort = sortOrder == "ValidTo" ? "ValidTo_desc" : "ValidTo"; 
+
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -45,8 +50,13 @@ namespace Soft.Areas.Quantity.Pages.Measures
 
         }
 
-        public string DateSort { get; set; }
+        public string ValidFromSort { get; set; }
         public string NameSort { get; set; }
+        public string IdSort { get; set; }
+        public string CodeSort { get; set; }
+        public string ValidToSort { get; set; }
+        public string DefinitionSort { get; set; }
+
         public bool HasPreviousPage { get; set; }
         public bool HasNextPage { get; set; }
         public int PageIndex { get; set; }
