@@ -6,6 +6,7 @@
         int PageSize { get; set; }
         bool HasNextPage { get; set; }
         bool HasPreviousPage { get; set; }
+        
 
     }
 }
