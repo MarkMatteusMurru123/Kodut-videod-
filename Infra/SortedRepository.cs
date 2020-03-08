@@ -60,7 +60,9 @@ namespace Abc.Infra
         private string GetName()
         {
             if (string.IsNullOrEmpty(SortOrder)) return string.Empty;
-            return SortOrder.Remove(SortOrder.IndexOf(DescendingString, StringComparison.Ordinal));
+            var idx = SortOrder.IndexOf(DescendingString, StringComparison.Ordinal);
+            if(idx > 0) return SortOrder.Remove(idx);
+            return SortOrder;
         }
         //kirjutab sql lause, milles on sortimine sees
 
