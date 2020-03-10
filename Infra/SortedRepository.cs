@@ -64,9 +64,7 @@ namespace Abc.Infra
         => IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
 
 
-    internal bool IsDescending()
-    {
-        return SortOrder.EndsWith(DescendingString);
-    }
+    internal bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
+    
     }
 }   
