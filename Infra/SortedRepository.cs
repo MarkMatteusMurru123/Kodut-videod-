@@ -23,16 +23,13 @@ namespace Abc.Infra
     protected internal IQueryable<TData> SetSorting(IQueryable<TData> data)
     {
         var expression = CreateExpression();
-        if (expression is null) return data;
-        return SetOrderBy(data, expression);
-
+        return expression is null ? data : SetOrderBy(data, expression);
     }
 
     internal Expression<Func<TData, object>> CreateExpression()
     {
         var property = FindProperty();
-        if (property is null) return null;
-        return LambdaExpression(property);
+        return property is null ? null : LambdaExpression(property);
     }
 
     internal Expression<Func<TData, object>> LambdaExpression(PropertyInfo p)
@@ -61,7 +58,18 @@ namespace Abc.Infra
     //kirjutab sql lause, milles on sortimine sees
 
     internal IQueryable<TData> SetOrderBy(IQueryable<TData> data, Expression<Func<TData, object>> e)
-        => IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
+    {
+        if (data is null) return null;
+        if (e is null) return data;
+        try
+        {
+            return IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
+        }
+        catch
+        {
+            return data;
+        }
+    }
 
 
     internal bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);

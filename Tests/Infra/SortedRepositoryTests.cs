@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
@@ -17,9 +18,9 @@ namespace Abc.Tests.Infra
     [TestClass]
     public class SortedRepositoryTests : AbstractClassTest<SortedRepository<Measure, MeasureData>, BaseRepository<Measure, MeasureData>>
     {
-        private class tesClass : SortedRepository<Measure, MeasureData>
+        private class testClass : SortedRepository<Measure, MeasureData>
         {
-            public tesClass(DbContext c, DbSet<MeasureData> s) : base(c, s)
+            public testClass(DbContext c, DbSet<MeasureData> s) : base(c, s)
             {
             }
 
@@ -33,7 +34,7 @@ namespace Abc.Tests.Infra
         {
             base.TestInitialize();
             var c = new QuantityDbcontext(new DbContextOptions<QuantityDbcontext>());
-            obj = new tesClass(c,c.Measures);
+            obj = new testClass(c,c.Measures);
         }
 
         [TestMethod]
@@ -45,7 +46,7 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void DescendingStringTest()
         {
-            var propertyName = GetMember.Name<tesClass>(x => x.DescendingString);
+            var propertyName = GetMember.Name<testClass>(x => x.DescendingString);
             IsReadOnlyProperty(obj, propertyName, "_desc");
         }
 
@@ -60,7 +61,42 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void CreateExpressionTest()
         {
-            Assert.Inconclusive();
+            string s;
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.ValidFrom));
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.ValidTo));
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.Name));
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.Definition));
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.Code));
+            TestCreateExpression(GetMember.Name<MeasureData>(x => x.ID));
+            TestCreateExpression(s = GetMember.Name<MeasureData>(x => x.ValidFrom), s + obj.DescendingString);
+            TestCreateExpression(s= GetMember.Name<MeasureData>(x => x.ValidTo),s + obj.DescendingString);
+            TestCreateExpression(s=GetMember.Name<MeasureData>(x => x.Name),s + obj.DescendingString);
+            TestCreateExpression(s=GetMember.Name<MeasureData>(x => x.Definition),s + obj.DescendingString);
+            TestCreateExpression(s=GetMember.Name<MeasureData>(x => x.Code),s + obj.DescendingString);
+            TestCreateExpression(s=GetMember.Name<MeasureData>(x => x.ID),s + obj.DescendingString);
+
+            TestNullExpression(GetRandom.String());
+            TestNullExpression(string.Empty);
+            TestNullExpression(null);
+
+        }
+
+        private void TestNullExpression(string name)
+        {
+            obj.SortOrder = name;
+            var lambda = obj.CreateExpression();
+            Assert.IsNull(lambda);
+        }
+
+        private void TestCreateExpression(string expected, string name = null)
+        {
+            name ??= expected;
+            obj.SortOrder = name;
+            var lambda = obj.CreateExpression();
+            Assert.IsNotNull(lambda);
+            Assert.IsInstanceOfType(lambda, typeof(Expression<System.Func<MeasureData, object>>));
+            Assert.IsTrue(lambda.ToString().Contains(expected));
+
         }
 
         [TestMethod]
@@ -118,6 +154,19 @@ namespace Abc.Tests.Infra
 
         }
 
+        [TestMethod]
+        public void SetOrderByTest()
+        {
+            Expression<Func<MeasureData, object>> expression = measureData => measureData.ToString();
+            Assert.IsNull(obj.SetOrderBy(null, null));
+            IQueryable<MeasureData> data = obj.dbSet;
+            Assert.AreEqual(data, obj.SetOrderBy(data, null));
+            Assert.AreEqual(data, obj.SetOrderBy(data, expression));
+            var data1 = obj.SetOrderBy(data, x => x.ID);
+            Assert.AreEqual(data, data1);
+
+
+        }
         [TestMethod]
         public void IsDescendingTest()
         {
