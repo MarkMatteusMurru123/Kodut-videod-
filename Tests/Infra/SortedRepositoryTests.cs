@@ -33,7 +33,8 @@ namespace Abc.Tests.Infra
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var c = new QuantityDbcontext(new DbContextOptions<QuantityDbcontext>());
+            var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
+            var c = new QuantityDbcontext(options);
             obj = new testClass(c,c.Measures);
         }
 
@@ -157,13 +158,14 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void SetOrderByTest()
         {
-            Expression<Func<MeasureData, object>> expression = measureData => measureData.ToString();
             Assert.IsNull(obj.SetOrderBy(null, null));
             IQueryable<MeasureData> data = obj.dbSet;
             Assert.AreEqual(data, obj.SetOrderBy(data, null));
-            Assert.AreEqual(data, obj.SetOrderBy(data, expression));
-            var data1 = obj.SetOrderBy(data, x => x.ID);
-            Assert.AreEqual(data, data1);
+            obj.SortOrder = GetRandom.String() + obj.DescendingString;
+            var set = obj.SetOrderBy(data, x => x.Definition);
+            Assert.IsNotNull(set);
+            Assert.AreEqual(data, set);
+            Assert.IsTrue(set.Expression.ToString().Contains("Abc.Data.Quantity.MeasureData]).OrderByDescending(x => x.Definition)"));
 
 
         }
