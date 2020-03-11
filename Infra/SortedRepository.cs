@@ -23,7 +23,8 @@ namespace Abc.Infra
     protected internal IQueryable<TData> SetSorting(IQueryable<TData> data)
     {
         var expression = CreateExpression();
-        return expression is null ? data : SetOrderBy(data, expression);
+        var r = expression is null ? data : SetOrderBy(data, expression);
+        return r;
     }
 
     internal Expression<Func<TData, object>> CreateExpression()

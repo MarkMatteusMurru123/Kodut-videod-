@@ -12,21 +12,23 @@ using Abc.Infra;
 using Abc.Infra.Quantity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MeasureData = Abc.Data.Quantity.MeasureData;
 
 namespace Abc.Tests.Infra
 {
     [TestClass]
     public class SortedRepositoryTests : AbstractClassTest<SortedRepository<Measure, MeasureData>, BaseRepository<Measure, MeasureData>>
     {
-        private class testClass : SortedRepository<Measure, MeasureData>
+        private class TestClass : SortedRepository<Measure, MeasureData>
         {
-            public testClass(DbContext c, DbSet<MeasureData> s) : base(c, s)
+            public TestClass(DbContext c, DbSet<MeasureData> s) : base(c, s)
             {
             }
 
-            protected override Task<MeasureData> GetData(string id)
+            protected override async Task<MeasureData> GetData(string id)
             {
-                throw new NotImplementedException();
+                await Task.CompletedTask;
+                return new MeasureData();
             }
         }
         [TestInitialize]
@@ -35,7 +37,7 @@ namespace Abc.Tests.Infra
             base.TestInitialize();
             var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
             var c = new QuantityDbcontext(options);
-            obj = new testClass(c,c.Measures);
+            obj = new TestClass(c, c.Measures);
         }
 
         [TestMethod]
@@ -47,7 +49,7 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void DescendingStringTest()
         {
-            var propertyName = GetMember.Name<testClass>(x => x.DescendingString);
+            var propertyName = GetMember.Name<TestClass>(x => x.DescendingString);
             IsReadOnlyProperty(obj, propertyName, "_desc");
         }
 
@@ -56,7 +58,31 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void SetSortingTest()
         {
-            Assert.Inconclusive();
+            void Test(IQueryable<MeasureData> d,string sortOrder)
+            {
+                obj.SortOrder = sortOrder + obj.DescendingString;
+                var set = obj.SetSorting(d);
+                Assert.IsNotNull(set);
+                Assert.AreNotEqual(d, set);
+                Assert.IsTrue(set.Expression.ToString()
+                    .Contains($"Abc.Data.Quantity.MeasureData]).OrderByDescending(Param_0 => Convert(Param_0.{sortOrder}, Object))"));
+                obj.SortOrder = sortOrder;
+                set = obj.SetSorting(d);
+                Assert.IsNotNull(set);
+                Assert.AreNotEqual(d, set);
+                Assert.IsTrue(set.Expression.ToString().Contains($"Abc.Data.Quantity.MeasureData]).OrderBy(Param_0 => Convert(Param_0.{sortOrder}, Object))"));
+            }
+
+            Assert.IsNull(obj.SetSorting(null));
+            IQueryable<MeasureData> data = obj.dbSet;
+            obj.SortOrder = null;
+            Assert.AreEqual(data, obj.SetSorting(data));
+            Test(data, GetMember.Name<MeasureData>(x => x.ID));
+            Test(data, GetMember.Name<MeasureData>(x => x.Code));
+            Test(data, GetMember.Name<MeasureData>(x => x.Name));
+            Test(data, GetMember.Name<MeasureData>(x => x.Definition));
+            Test(data, GetMember.Name<MeasureData>(x => x.ValidFrom));
+            Test(data, GetMember.Name<MeasureData>(x => x.ValidTo));
         }
 
         [TestMethod]
@@ -158,15 +184,30 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void SetOrderByTest()
         {
+            void Test(IQueryable<MeasureData> d, Expression<Func<MeasureData, object>> e, string expected)
+            {
+                obj.SortOrder = GetRandom.String() + obj.DescendingString;
+                var set = obj.SetOrderBy(d, e);
+                Assert.IsNotNull(set);
+                Assert.AreNotEqual(d, set);
+                Assert.IsTrue(set.Expression.ToString()
+                    .Contains($"Abc.Data.Quantity.MeasureData]).OrderByDescending({expected})"));
+                obj.SortOrder = GetRandom.String();
+                set = obj.SetOrderBy(d, e);
+                Assert.IsNotNull(set);
+                Assert.AreNotEqual(d, set);
+                Assert.IsTrue(set.Expression.ToString().Contains($"Abc.Data.Quantity.MeasureData]).OrderBy({expected})"));
+            }
+
             Assert.IsNull(obj.SetOrderBy(null, null));
             IQueryable<MeasureData> data = obj.dbSet;
             Assert.AreEqual(data, obj.SetOrderBy(data, null));
-            obj.SortOrder = GetRandom.String() + obj.DescendingString;
-            var set = obj.SetOrderBy(data, x => x.Definition);
-            Assert.IsNotNull(set);
-            Assert.AreEqual(data, set);
-            Assert.IsTrue(set.Expression.ToString().Contains("Abc.Data.Quantity.MeasureData]).OrderByDescending(x => x.Definition)"));
-
+            Test(data, x => x.ID, "x => x.ID");
+            Test(data, x => x.Code, "x => x.Code");
+            Test(data, x => x.Name, "x => x.Name");
+            Test(data, x => x.Definition, "x => x.Definition");
+            Test(data, x => x.ValidFrom, "x => Convert(x.ValidFrom, Object");
+            Test(data, x => x.ValidTo, "x => Convert(x.ValidTo, Object)");
 
         }
         [TestMethod]
