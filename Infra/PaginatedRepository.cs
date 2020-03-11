@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Abc.Data.Common;
 using Abc.Domain.Common;
@@ -13,12 +14,47 @@ namespace Abc.Infra
 
     {
         public int PageIndex { get; set; } 
-        public int PageSize { get; set; } = 12;
-        public bool HasNextPage { get; set; }
-        public bool HasPreviousPage { get; set; }
+        public int PageSize { get; set; } = 5;
+        public int TotalPages => GetTotalPages(PageSize);
+        public bool HasNextPage => PageIndex < TotalPages;
+        public bool HasPreviousPage => PageIndex > 1;
+        
 
         protected PaginatedRepository(DbContext c, DbSet<TData> s) : base(c, s)
         {
+        }
+        internal int GetTotalPages(in int pageSize)
+        {
+            var count = GetItemsCount();
+            var pages = CountTotalPages(count, pageSize);
+            return pages;
+        }
+
+        internal int CountTotalPages(int count, in int pageSize)
+        {
+            return (int)Math.Ceiling(count / (double)pageSize);
+        }
+
+        internal int GetItemsCount()
+        {
+            var query = base.CreateSqlQuery(); //sees on filtreerimine, sortimine
+            return query.CountAsync().Result; //asünkroonset meetodit saab välja kutsuda sünkroonses.
+        }
+
+        protected internal override IQueryable<TData> CreateSqlQuery()
+        {
+            var query =   base.CreateSqlQuery();
+            query = AddSkipAndTake(query);
+            return query;
+        }
+
+        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query)
+        {
+            var q = query.Skip(
+                    (PageIndex - 1) * PageSize)
+                .Take(PageSize);
+            return q;
+
         }
     }
 }

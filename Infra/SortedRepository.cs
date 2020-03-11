@@ -20,10 +20,17 @@ namespace Abc.Infra
     {
     }
 
-    protected internal IQueryable<TData> SetSorting(IQueryable<TData> data)
+    protected internal override IQueryable<TData> CreateSqlQuery()
+    {
+        var query = base.CreateSqlQuery();
+        query = AddSorting(query);
+        return query;
+    }
+
+    protected internal IQueryable<TData> AddSorting(IQueryable<TData> query)
     {
         var expression = CreateExpression();
-        var r = expression is null ? data : SetOrderBy(data, expression);
+        var r = expression is null ? query : AddOrderBy(query, expression);
         return r;
     }
 
@@ -58,17 +65,17 @@ namespace Abc.Infra
     }
     //kirjutab sql lause, milles on sortimine sees
 
-    internal IQueryable<TData> SetOrderBy(IQueryable<TData> data, Expression<Func<TData, object>> e)
+    internal IQueryable<TData> AddOrderBy(IQueryable<TData> query, Expression<Func<TData, object>> e)
     {
-        if (data is null) return null;
-        if (e is null) return data;
+        if (query is null) return null;
+        if (e is null) return query;
         try
         {
-            return IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
+            return IsDescending() ? query.OrderByDescending(e) : query.OrderBy(e);
         }
         catch
         {
-            return data;
+            return query;
         }
     }
 

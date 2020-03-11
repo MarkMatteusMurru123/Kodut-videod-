@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Abc.Data.Common;
 using Abc.Domain.Common;
@@ -16,6 +17,18 @@ namespace Abc.Infra
 
         protected FilteredRepository(DbContext c, DbSet<TData> s) : base(c, s)
         {
+        }
+
+        protected internal override IQueryable<TData> CreateSqlQuery()
+        {
+            var query =  base.CreateSqlQuery();
+            query = AddFiltering(query);
+            return query;
+        }
+
+        protected internal virtual IQueryable<TData> AddFiltering(IQueryable<TData> query)
+        {
+            return query;
         }
     }
 }
