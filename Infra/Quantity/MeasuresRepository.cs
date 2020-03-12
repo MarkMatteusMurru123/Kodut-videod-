@@ -20,18 +20,6 @@ namespace Abc.Infra.Quantity
         
 
 
-        protected internal override IQueryable<MeasureData> AddFiltering(IQueryable<MeasureData> set)
-        {
-            if (string.IsNullOrEmpty(SearchString)) return set;
-            return set.Where(s => s.Name.Contains(SearchString) 
-                                  || s.Code.Contains(SearchString)
-                                  || s.ID.Contains(SearchString)
-                                  || s.Definition.Contains(SearchString)
-                                  || s.ValidFrom.ToString().Contains(SearchString)
-                                  || s.ValidTo.ToString().Contains(SearchString)
-                                  );
-
-        }
         
 
 
