@@ -30,31 +30,18 @@ namespace Abc.Infra
             return pages;
         }
 
-        internal int CountTotalPages(int count, in int pageSize)
-        {
-            return (int)Math.Ceiling(count / (double)pageSize);
-        }
+        internal int CountTotalPages(int count, in int pageSize) => (int)Math.Ceiling(count / (double)pageSize);
 
-        internal int GetItemsCount()
-        {
-            var query = base.CreateSqlQuery(); //sees on filtreerimine, sortimine
-            return query.CountAsync().Result; //asünkroonset meetodit saab välja kutsuda sünkroonses.
-        }
 
-        protected internal override IQueryable<TData> CreateSqlQuery()
-        {
-            var query =   base.CreateSqlQuery();
-            query = AddSkipAndTake(query);
-            return query;
-        }
+        internal int GetItemsCount() => base.CreateSqlQuery().CountAsync().Result;
 
-        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query)
-        {
-            var q = query.Skip(
+
+        protected internal override IQueryable<TData> CreateSqlQuery() => AddSkipAndTake(base.CreateSqlQuery());
+        
+
+        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query) => query.Skip(
                     (PageIndex - 1) * PageSize)
                 .Take(PageSize);
-            return q;
-
-        }
+    
     }
 }
