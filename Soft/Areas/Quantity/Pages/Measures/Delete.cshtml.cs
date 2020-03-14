@@ -15,21 +15,13 @@ namespace Soft.Areas.Quantity.Pages.Measures
         }
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null) return NotFound();
-
-            Item = MeasureViewFactory.Create(await db.Get(id));
-
-            if (Item == null)
-            {
-                return NotFound();
-            }
+            await GetObject(id);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null) return NotFound();
-            await db.Delete(id);
+            await DeleteObject(id);
             return RedirectToPage("./Index");
         }
 

@@ -9,7 +9,6 @@ namespace Facade.Quantity
         public string ID { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public string Code { get; set; }
         public string Definition { get; set; }
         [DataType(DataType.Date)]
