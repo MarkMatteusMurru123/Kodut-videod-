@@ -8,12 +8,12 @@ using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
 using Microsoft.VisualBasic;
 
-namespace Soft.Areas.Quantity.Pages.Measures
+namespace Soft.Areas.Quantity.Pages.Units
 {
-    public class IndexModel : MeasuresPage
+    public class IndexModel : UnitsPage
     {
     
-        public IndexModel(IMeasuresRepository r) : base(r)
+        public IndexModel(IUnitsRepository r) : base(r)
         {
         }
         public async Task OnGetAsync(string sortOrder,

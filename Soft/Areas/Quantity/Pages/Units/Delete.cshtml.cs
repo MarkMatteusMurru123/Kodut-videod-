@@ -3,12 +3,12 @@ using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Soft.Areas.Quantity.Pages.Measures
+namespace Soft.Areas.Quantity.Pages.Units
 {
-    public class DeleteModel : MeasuresPage
+    public class DeleteModel : UnitsPage
     {
 
-        public DeleteModel(IMeasuresRepository r) : base(r)
+        public DeleteModel(IUnitsRepository r) : base(r)
         {
 
         }
