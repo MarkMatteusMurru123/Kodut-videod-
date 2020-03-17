@@ -16,7 +16,7 @@ namespace Abc.Tests.Data.Common
         [TestMethod]
         public void DefinitionTest()
         {
-            isNullableProperty(()=>obj.Definition, x=>obj.Definition = x);
+            IsNullableProperty(()=>obj.Definition, x=>obj.Definition = x);
         }
     }       
 }

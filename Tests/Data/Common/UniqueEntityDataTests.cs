@@ -16,7 +16,7 @@ namespace Abc.Tests.Data.Common
         [TestMethod]
         public void IDTest()
         {
-            isNullableProperty(() => obj.ID, x => obj.ID = x);
+            IsNullableProperty(() => obj.ID, x => obj.ID = x);
         }
     }
 }

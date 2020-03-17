@@ -8,9 +8,9 @@ namespace Abc.Tests.Data.Quantity
     public class UnitDataTests : SealedClassTest<UnitData, DefinedEntityData>
     {
         [TestMethod]
-        public void MeasureIDTest()
+        public void MeasureIdTest()
         {
-            isNullableProperty(() => obj.MeasureId, x => obj.MeasureId = x);
+            IsNullableProperty(() => obj.MeasureId, x => obj.MeasureId = x);
         }
     }
 }

@@ -16,13 +16,13 @@ namespace Abc.Tests.Data.Common
         [TestMethod]
         public void ValidFromTest()
         {
-            isNullableProperty(() => obj.ValidFrom, x => obj.ValidFrom = x);
+            IsNullableProperty(() => obj.ValidFrom, x => obj.ValidFrom = x);
         }
 
         [TestMethod]
         public void ValidToTest()
         {
-            isNullableProperty(() => obj.ValidTo, x => obj.ValidTo = x); 
+            IsNullableProperty(() => obj.ValidTo, x => obj.ValidTo = x); 
         }   
     }
 }

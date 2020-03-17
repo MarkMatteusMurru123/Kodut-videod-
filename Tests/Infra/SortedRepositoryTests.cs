@@ -46,7 +46,7 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void SortOrderTest()
         {
-            isNullableProperty(() => obj.SortOrder, x => obj.SortOrder=x);
+            IsNullableProperty(() => obj.SortOrder, x => obj.SortOrder=x);
         }
 
         [TestMethod]
