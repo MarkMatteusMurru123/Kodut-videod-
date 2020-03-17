@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Abc.Data.Common;
 using Abc.Domain.Common;
 using Microsoft.EntityFrameworkCore;

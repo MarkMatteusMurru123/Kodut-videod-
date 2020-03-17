@@ -11,6 +11,7 @@ namespace Abc.Facade.Quantity
                     Data =
                     {
                         ID = v.ID,
+                        MeasureId = v.MeasureId,
                         Name = v.Name,
                         Code = v.Code,
                         Definition = v.Definition,
@@ -27,6 +28,7 @@ namespace Abc.Facade.Quantity
             var v = new UnitView
             {   
                 ID = o.Data.ID,
+                MeasureId = o.Data.MeasureId,
                 Name = o.Data.Name,
                 Code = o.Data.Code,
                 Definition = o.Data.Definition,

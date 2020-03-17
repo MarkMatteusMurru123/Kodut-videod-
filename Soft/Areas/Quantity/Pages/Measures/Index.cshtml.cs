@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Abc.Aids;
-using Abc.Data.Quantity;
+﻿using System.Threading.Tasks;
 using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
-using Microsoft.VisualBasic;
 
 namespace Soft.Areas.Quantity.Pages.Measures
 {

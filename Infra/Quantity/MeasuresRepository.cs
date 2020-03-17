@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using Abc.Data.Quantity;
+﻿using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Abc.Infra.Quantity
 {
