@@ -13,8 +13,8 @@
     <table class="table">
         <thead>
             @Html.TableHeaderFor(new Link(Html.DisplayNameFor(m => m.Item.ID),Model.GetSortString(m => m.ID, page)),
-                new Link(Html.DisplayNameFor(m => m.Item.Name), Model.GetSortString(m => m.Name, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.MeasureId), Model.GetSortString(m => m.MeasureId, page)),
+                new Link(Html.DisplayNameFor(m => m.Item.Name), Model.GetSortString(m => m.Name, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.Code), Model.GetSortString(m => m.Code, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.Definition), Model.GetSortString(m => m.Definition, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.ValidFrom),Model.GetSortString(m => m.ValidFrom, page)),
@@ -29,6 +29,7 @@
                         page,
                         item.ID,
                         Html.DisplayFor(modelItem=>item.ID),
+                        Html.DisplayFor(modelItem=>item.MeasureId),
                         Html.DisplayFor(modelItem=>item.Name),
                         Html.DisplayFor(modelItem=>item.Code),
                         Html.DisplayFor(modelItem=>item.Definition),
