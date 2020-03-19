@@ -30,6 +30,11 @@ namespace Abc.Pages.Quantity
 
 
         public override string ItemId => Item.ID;
+
+        protected internal override string GetPageSubtitle()
+        {
+            return FixedValue is null ? base.GetPageSubtitle() : $"For {GetMeasureName(FixedValue)}";
+        }
         protected internal override Unit ToObject(UnitView view)
         {
             return UnitViewFactory.Create(view);
