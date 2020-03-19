@@ -28,6 +28,7 @@ namespace Abc.Pages.Quantity
 
         public IEnumerable<SelectListItem> Measures { get; }
 
+
         public override string ItemId => Item.ID;
         protected internal override Unit ToObject(UnitView view)
         {
@@ -37,6 +38,17 @@ namespace Abc.Pages.Quantity
         protected internal override UnitView ToView(Unit obj)
         {
             return UnitViewFactory.Create(obj);
+        }
+        public string GetMeasureName(string measureId)
+        {
+            
+            foreach (var m in Measures)
+            {
+                if (m.Value == measureId) 
+                    return m.Text;
+            }
+            return "Unspecified";
+            throw new System.NotImplementedException();
         }
     }
 }
