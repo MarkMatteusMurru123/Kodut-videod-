@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Abc.Pages.Quantity
 {
-    public class UnitsPage : BasePage<IUnitsRepository, Unit, UnitView, UnitData>
+    public abstract class UnitsPage : BasePage<IUnitsRepository, Unit, UnitView, UnitData>
     {
         protected internal UnitsPage(IUnitsRepository r, IMeasuresRepository m) : base(r)
         {
@@ -30,6 +30,10 @@ namespace Abc.Pages.Quantity
 
 
         public override string ItemId => Item.ID;
+
+        protected internal override string GetPageURL() => "/Quantity/Units";
+
+
 
         protected internal override string GetPageSubtitle()
         {

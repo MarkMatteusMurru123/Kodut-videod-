@@ -24,10 +24,8 @@ namespace Soft.Areas.Quantity.Pages.Units
 
         public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
-            FixedFilter = fixedFilter;
-            FixedValue = fixedValue;
-            if (!await AddObject()) return Page();
-            return Redirect($"/Quantity/Units/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}");
+            if (!await AddObject(fixedFilter, fixedValue)) return Page();
+            return Redirect(IndexURL);
         }   
 
 

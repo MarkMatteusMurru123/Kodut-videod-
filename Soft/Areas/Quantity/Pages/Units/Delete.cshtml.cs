@@ -16,16 +16,14 @@ namespace Soft.Areas.Quantity.Pages.Units
         {
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
-            await GetObject(id);
+            await GetObject(id, fixedFilter, fixedValue);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string id, string fixedFilter, string fixedValue)
         {
-            FixedFilter = fixedFilter;
-            FixedValue = fixedValue;
-            await DeleteObject(id);
-            return Redirect($"/Quantity/Units/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}");
+            await DeleteObject(id, fixedFilter, fixedValue);
+            return Redirect(IndexURL);
         }
 
 

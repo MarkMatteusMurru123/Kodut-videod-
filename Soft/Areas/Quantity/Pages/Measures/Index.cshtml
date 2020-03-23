@@ -4,7 +4,7 @@
 
 @{
     Layout = "_Index";
-    var page = "/Quantity/Measures";
+    var page = Model.PageURL;
 }
 @section Create {
     @Html.HypertextLinkFor(string.Empty, new Link(Constants.CreateNewLinkTitle, $"{page}/Create"))

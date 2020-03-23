@@ -25,6 +25,17 @@ namespace Abc.Pages
         public abstract string ItemId { get; }
         public string PageTitle { get; set; }
         public string PageSubTitle => GetPageSubtitle();
+        public string IndexURL => GetIndexURL();
+
+        protected internal string GetIndexURL()
+        {
+            return $"{PageURL}Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}";
+        }
+
+        public string PageURL => GetPageURL();
+
+        protected internal abstract string GetPageURL();
+        
 
         protected internal virtual string GetPageSubtitle()
         {
@@ -65,8 +76,10 @@ namespace Abc.Pages
         public bool HasNextPage => db.HasNextPage;
 
 
-        protected internal async Task<bool> AddObject()
+        protected internal async Task<bool> AddObject(string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             // To protect from overposting attacks, please enable the specific properties you want to bind to, for
             // more details see https://aka.ms/RazorPagesCRUD.
 
@@ -88,17 +101,21 @@ namespace Abc.Pages
         protected internal abstract TDomain ToObject(TView item);
         
 
-        protected internal async Task UpdateObject()
+        protected internal async Task UpdateObject(string fixedFilter, string fixedValue)
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
 
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await db.Update(ToObject(Item));
 
         }
 
-        protected internal async Task GetObject(string id)
+        protected internal async Task GetObject(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             var o = await db.Get(id);
             Item = ToView(o);
         }
@@ -106,8 +123,10 @@ namespace Abc.Pages
         protected internal abstract TView ToView(TDomain obj);
         
 
-        protected internal async Task DeleteObject(string id)
+        protected internal async Task DeleteObject(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await db.Delete(id);
         }
         public string GetSortString(Expression<Func<TData, object>> e, string page)
