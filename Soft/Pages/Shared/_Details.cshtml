@@ -1,4 +1,4 @@
-﻿
+﻿    
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageTitle;
@@ -18,6 +18,8 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Item.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index"
+       asp-route-fixedFilter="@Model.FixedFilter"
+       asp-route-fixedValue="@Model.FixedValue">Back to full list</a>
     @RenderSection("Details")
 </div>
