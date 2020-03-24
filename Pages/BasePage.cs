@@ -24,7 +24,7 @@ namespace Abc.Pages
         public IList<TView> Items { get; set; }
         public abstract string ItemId { get; }
         public string PageTitle { get; set; }
-        public string PageSubTitle => GetPageSubtitle();
+        public string PageSubTitle => GetPageSubTitle();
         public string IndexUrl => GetIndexUrl();
 
         protected internal string GetIndexUrl()
@@ -37,7 +37,7 @@ namespace Abc.Pages
         protected internal abstract string GetPageUrl();
         
 
-        protected internal virtual string GetPageSubtitle()
+        protected internal virtual string GetPageSubTitle()
         {
             return string.Empty;
         }

@@ -35,9 +35,9 @@ namespace Abc.Pages.Quantity
 
 
 
-        protected internal override string GetPageSubtitle()
+        protected internal override string GetPageSubTitle()
         {
-            return FixedValue is null ? base.GetPageSubtitle() : $"For {GetMeasureName(FixedValue)}";
+            return FixedValue is null ? base.GetPageSubTitle() : $"For {GetMeasureName(FixedValue)}";
         }
         protected internal override Unit ToObject(UnitView view)
         {
