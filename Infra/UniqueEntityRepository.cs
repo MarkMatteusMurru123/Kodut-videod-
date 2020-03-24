@@ -15,7 +15,7 @@ namespace Abc.Infra
         }
         protected override async Task<TData> GetData(string id)
         {
-            return await dbSet.FirstOrDefaultAsync(m => m.ID == id);
+            return await DbSet.FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

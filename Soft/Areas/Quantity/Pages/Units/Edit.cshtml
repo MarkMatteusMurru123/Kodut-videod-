@@ -5,7 +5,7 @@
     Layout = "_Edit";
 }
     <body>
-        <input type="hidden" asp-for="Item.ID" />
+        <input type="hidden" asp-for="Item.Id" />
         @Html.EditControlsForDropDown(model => model.Item.MeasureId, Model.Measures)
         @Html.EditControlsFor(model => model.Item.Name)
         @Html.EditControlsFor(model => model.Item.Code)

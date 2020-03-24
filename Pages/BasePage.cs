@@ -13,11 +13,11 @@ namespace Abc.Pages
     public abstract class BasePage<TRepository, TDomain, TView, TData> : PageModel
     where TRepository:ICrudMethods<TDomain>, ISorting, IFiltering, IPaging
     {
-        private TRepository db;
+        private TRepository _db;
 
         protected internal BasePage(TRepository r)
         {
-            db = r;
+            _db = r;
         }
         [BindProperty]
         public TView Item { get; set; }
@@ -25,16 +25,16 @@ namespace Abc.Pages
         public abstract string ItemId { get; }
         public string PageTitle { get; set; }
         public string PageSubTitle => GetPageSubtitle();
-        public string IndexURL => GetIndexURL();
+        public string IndexUrl => GetIndexUrl();
 
-        protected internal string GetIndexURL()
+        protected internal string GetIndexUrl()
         {
-            return $"{PageURL}Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}";
+            return $"{PageUrl}Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}";
         }
 
-        public string PageURL => GetPageURL();
+        public string PageUrl => GetPageUrl();
 
-        protected internal abstract string GetPageURL();
+        protected internal abstract string GetPageUrl();
         
 
         protected internal virtual string GetPageSubtitle()
@@ -44,36 +44,36 @@ namespace Abc.Pages
 
         public string FixedValue
         {
-            get => db.FixedValue;
-            set => db.FixedValue = value;
+            get => _db.FixedValue;
+            set => _db.FixedValue = value;
         }
 
         public string FixedFilter
         {
-            get => db.FixedFilter;
-            set => db.FixedFilter = value;
+            get => _db.FixedFilter;
+            set => _db.FixedFilter = value;
 
         }
         public string SortOrder
         {
-            get => db.SortOrder;
-            set => db.SortOrder = value ;
+            get => _db.SortOrder;
+            set => _db.SortOrder = value ;
         }
         public string SearchString
         {
-            get => db.SearchString;
-            set => db.SearchString = value;
+            get => _db.SearchString;
+            set => _db.SearchString = value;
         }
         public int PageIndex
         {
-            get => db.PageIndex;
-            set => db.PageIndex = value;
+            get => _db.PageIndex;
+            set => _db.PageIndex = value;
 
         }
 
-        public int TotalPages => db.TotalPages;
-        public bool HasPreviousPage => db.HasPreviousPage;
-        public bool HasNextPage => db.HasNextPage;
+        public int TotalPages => _db.TotalPages;
+        public bool HasPreviousPage => _db.HasPreviousPage;
+        public bool HasNextPage => _db.HasNextPage;
 
 
         protected internal async Task<bool> AddObject(string fixedFilter, string fixedValue)
@@ -86,7 +86,7 @@ namespace Abc.Pages
             try
             {
                 if (!ModelState.IsValid) return false;
-                await db.Add(ToObject(Item));
+                await _db.Add(ToObject(Item));
 
             }
             catch
@@ -108,7 +108,7 @@ namespace Abc.Pages
         {
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
-            await db.Update(ToObject(Item));
+            await _db.Update(ToObject(Item));
 
         }
 
@@ -116,7 +116,7 @@ namespace Abc.Pages
         {
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
-            var o = await db.Get(id);
+            var o = await _db.Get(id);
             Item = ToView(o);
         }
 
@@ -127,7 +127,7 @@ namespace Abc.Pages
         {
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
-            await db.Delete(id);
+            await _db.Delete(id);
         }
         public string GetSortString(Expression<Func<TData, object>> e, string page)
         {
@@ -171,7 +171,7 @@ namespace Abc.Pages
 
         internal async Task<List<TView>> GetList()
         {
-            var l = await db.Get();
+            var l = await _db.Get();
             return l.Select(ToView).ToList();
         }
     }

@@ -17,31 +17,31 @@ namespace Abc.Tests.Domain.Common
         public override void TestInitialize()
         {
             base.TestInitialize();
-            obj = new TestClass();
+            Obj = new TestClass();
         }
 
         [TestMethod]
         public void DataTest()
         {
             var d = GetRandom.Object<MeasureData>();
-            Assert.AreNotSame(d, obj.Data);
-            obj = new TestClass(d);
-            Assert.AreSame(d, obj.Data);
+            Assert.AreNotSame(d, Obj.Data);
+            Obj = new TestClass(d);
+            Assert.AreSame(d, Obj.Data);
         }
         [TestMethod]
         public void DataIsNullTest()
         {
             var d = GetRandom.Object<MeasureData>();
-            Assert.IsNotNull(obj.Data);
-            obj.Data = d;
-            Assert.AreSame(d, obj.Data);
+            Assert.IsNotNull(Obj.Data);
+            Obj.Data = d;
+            Assert.AreSame(d, Obj.Data);
         }
         [TestMethod]
         public void CanSetNullDataTest()
         {
-            Assert.IsNotNull(obj.Data);
-            obj.Data = null;
-            Assert.IsNull(obj.Data);
+            Assert.IsNotNull(Obj.Data);
+            Obj.Data = null;
+            Assert.IsNull(Obj.Data);
         }
     }
 }

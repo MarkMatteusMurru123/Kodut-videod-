@@ -11,17 +11,17 @@ namespace Abc.Tests.Data.Common
         public override void TestInitialize()
         {
             base.TestInitialize();
-            obj = new TestClass();
+            Obj = new TestClass();
         }
         [TestMethod]
         public void NameTest()
         {
-            IsNullableProperty(() => obj.Name, x => obj.Name = x);
+            IsNullableProperty(() => Obj.Name, x => Obj.Name = x);
         }
         [TestMethod]
         public void CodeTest()
         {
-            IsNullableProperty(() => obj.Code, x => obj.Code = x);
+            IsNullableProperty(() => Obj.Code, x => Obj.Code = x);
         }
     }
 }

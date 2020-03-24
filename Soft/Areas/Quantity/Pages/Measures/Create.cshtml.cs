@@ -24,7 +24,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
         public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
             if (!await AddObject(fixedFilter, fixedValue)) return Page();
-            return Redirect(IndexURL);
+            return Redirect(IndexUrl);
         }
 
         

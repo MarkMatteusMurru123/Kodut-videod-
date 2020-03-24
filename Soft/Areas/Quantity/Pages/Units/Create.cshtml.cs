@@ -25,7 +25,7 @@ namespace Soft.Areas.Quantity.Pages.Units
         public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
             if (!await AddObject(fixedFilter, fixedValue)) return Page();
-            return Redirect(IndexURL);
+            return Redirect(IndexUrl);
         }   
 
 

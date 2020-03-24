@@ -12,9 +12,9 @@ namespace Abc.Tests.Pages
         {
             return $"{assembly}.{name}";
         }
-        [TestMethod] public void IsExtensionsTested() { isAllTested(assembly, Namespace("Extensions")); }
-        [TestMethod] public void IsQuantityTested() { isAllTested(assembly, Namespace("Quantity")); }
-        [TestMethod] public void IsTested() { isAllTested(assembly, base.Namespace("Pages")); }
+        [TestMethod] public void IsExtensionsTested() { IsAllTested(assembly, Namespace("Extensions")); }
+        [TestMethod] public void IsQuantityTested() { IsAllTested(assembly, Namespace("Quantity")); }
+        [TestMethod] public void IsTested() { IsAllTested(assembly, base.Namespace("Pages")); }
 
     }
 }

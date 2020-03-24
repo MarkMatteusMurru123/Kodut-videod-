@@ -19,7 +19,7 @@ namespace Abc.Pages.Extensions
         public const string OrdersPageTitle = "Orders";
         public const string PaymentsPageTitle = "Payments";
         public const string InventoryPageTitle = "Inventory";
-        public const string CataloguesPageTitle = "Cataloques";
+        public const string CataloguesPageTitle = "Catalogues";
         public const string ProductsPageTitle = "Products";
         public const string ProcessesPageTitle = "Processes";
         public const string ProceduresPageTitle = "Procedures";

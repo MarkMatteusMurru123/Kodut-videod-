@@ -4,7 +4,7 @@
 
 @{
     Layout = "_Index";
-    var page = Model.PageURL;
+    var page = Model.PageUrl;
 }
 @section Create {
     @Html.HypertextLinkFor(string.Empty, new Link(Constants.CreateNewLinkTitle, $"{page}/Create     "))
@@ -12,7 +12,7 @@
 <body>
     <table class="table">
         <thead>
-            @Html.TableHeaderFor(new Link(Html.DisplayNameFor(m => m.Item.ID),Model.GetSortString(m => m.ID, page)),
+            @Html.TableHeaderFor(new Link(Html.DisplayNameFor(m => m.Item.Id),Model.GetSortString(m => m.Id, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.MeasureId), Model.GetSortString(m => m.MeasureId, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.Name), Model.GetSortString(m => m.Name, page)),
                 new Link(Html.DisplayNameFor(m => m.Item.Code), Model.GetSortString(m => m.Code, page)),
@@ -27,10 +27,10 @@
                 <tr>
                     @Html.TableRowFor(
                         page,
-                        item.ID,
+                        item.Id,
                         Model.FixedFilter,
                         Model.FixedValue,
-                        Html.DisplayFor(modelItem=>item.ID),
+                        Html.DisplayFor(modelItem=>item.Id),
                         Html.Raw(Model.GetMeasureName(item.MeasureId)),
                         Html.DisplayFor(modelItem=>item.Name),
                         Html.DisplayFor(modelItem=>item.Code),

@@ -7,7 +7,7 @@ using System.Text;
 namespace Abc.Aids {
 
     public static class GetRandom {
-        private static readonly Random r = new Random();
+        private static readonly Random R = new Random();
 
 
         public static bool Bool() {
@@ -41,7 +41,7 @@ namespace Abc.Aids {
         public static double Double(double min = double.MinValue, double max = double.MaxValue) {
             if (min.CompareTo(max) == 0) return min;
             Sort.Upwards(ref min, ref max);
-            var d = r.NextDouble();
+            var d = R.NextDouble();
             if (max > 0) return min + d * max - d * min;
             return min - d * min + d * max;
         }
@@ -70,8 +70,8 @@ namespace Abc.Aids {
 
         public static int Int32(int min = int.MinValue, int max = int.MaxValue) {
             if (min.CompareTo(max) == 0) return min;
-            if (min.CompareTo(max) > 0) return r.Next(max, min);
-            return r.Next(min, max);
+            if (min.CompareTo(max) > 0) return R.Next(max, min);
+            return R.Next(min, max);
         }
 
         public static long Int64(long min = long.MinValue, long max = long.MaxValue) {

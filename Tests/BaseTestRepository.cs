@@ -29,17 +29,17 @@ namespace Abc.Tests
             return _list;
         }
 
-        public async Task<TObj> Get(string ID)
+        public async Task<TObj> Get(string id)
         {
             await Task.CompletedTask;
-            return _list.Find(x =>x.Data.ID == ID);
+            return _list.Find(x =>x.Data.Id == id);
 
         }
 
-        public async Task Delete(string ID)
+        public async Task Delete(string id)
         {
             await Task.CompletedTask;
-            var obj = _list.Find(x => x.Data.ID == ID);
+            var obj = _list.Find(x => x.Data.Id == id);
             _list.Remove(obj);
 
         }
@@ -53,7 +53,7 @@ namespace Abc.Tests
 
         public async Task Update(TObj obj)
         {
-            await Delete(obj.Data.ID);
+            await Delete(obj.Data.Id);
             _list.Add(obj);
         }
 

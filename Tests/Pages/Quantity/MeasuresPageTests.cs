@@ -26,35 +26,35 @@ namespace Abc.Tests.Pages.Quantity
         {
             base.TestInitialize();
             var r = new TestRepository();
-            obj = new TestClass(r);
+            Obj = new TestClass(r);
         }
 
         [TestMethod]
         public void ItemIdTest()
         {
             var item = GetRandom.Object<MeasureView>();
-            obj.Item = item;
-            Assert.AreEqual(item.ID, obj.ItemId);
-            obj.Item = null;
-            Assert.AreEqual(string.Empty, obj.ItemId);
+            Obj.Item = item;
+            Assert.AreEqual(item.Id, Obj.ItemId);
+            Obj.Item = null;
+            Assert.AreEqual(string.Empty, Obj.ItemId);
         }
         [TestMethod]
-        public void PageTitleTest()=>Assert.AreEqual("Measures",obj.PageTitle);
+        public void PageTitleTest()=>Assert.AreEqual("Measures",Obj.PageTitle);
         [TestMethod]
-        public void PageUrlTest()=>Assert.AreEqual("/Quantity/Measures", obj.PageURL);
+        public void PageUrlTest()=>Assert.AreEqual("/Quantity/Measures", Obj.PageUrl);
 
         [TestMethod]
         public void ToObjectTest()
         {
             var view = GetRandom.Object<MeasureView>();
-            var o = obj.ToObject(view);
+            var o = Obj.ToObject(view);
             TestArePropertyValuesEqual(view, o.Data);
         }
         [TestMethod]
         public void ToViewTest()
         {
             var data = GetRandom.Object<MeasureData>();
-            var view = obj.ToView(new Measure(data));
+            var view = Obj.ToView(new Measure(data));
             TestArePropertyValuesEqual(view, data);
 
         }

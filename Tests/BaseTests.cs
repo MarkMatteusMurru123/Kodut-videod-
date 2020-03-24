@@ -9,30 +9,30 @@ namespace Abc.Tests
     public class BaseTests
     {
         private const string NotTested = "<{0}> is not tested";
-        private const string NotSpecified = "Clas is not specified";
-        private List<string> members { get; set; }
-        protected Type type;
+        private const string NotSpecified = "Class is not specified";
+        private List<string> Members { get; set; }
+        protected Type Type;
 
         [TestMethod]
         public void IsTested()
         {
-            if (type == null) Assert.Inconclusive(NotSpecified);
-            var m = GetClass.Members(type, PublicBindingFlagsFor.DeclaredMembers);
-            members = m.Select(e => e.Name).ToList();
+            if (Type == null) Assert.Inconclusive(NotSpecified);
+            var m = GetClass.Members(Type, PublicBindingFlagsFor.declaredMembers);
+            Members = m.Select(e => e.Name).ToList();
             RemoveTested();
-            if (members.Count == 0) return;
-            Assert.Fail(NotTested, members[0]);
+            if (Members.Count == 0) return;
+            Assert.Fail(NotTested, Members[0]);
         }
 
         private void RemoveTested()
         {
             var tests = GetType().GetMembers().Select(e => e.Name).ToList();
-            for (var i = members.Count; i > 0; i--)
+            for (var i = Members.Count; i > 0; i--)
             {
-                var m = members[i - 1] + "Test";
+                var m = Members[i - 1] + "Test";
                 var isTested = tests.Find(o => o == m);
                 if (string.IsNullOrEmpty(isTested)) continue;
-                members.RemoveAt(i - 1);
+                Members.RemoveAt(i - 1);
             }
         }
         protected static void TestArePropertyValuesEqual(object obj1, object obj2)

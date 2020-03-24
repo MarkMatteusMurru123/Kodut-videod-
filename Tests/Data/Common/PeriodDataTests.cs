@@ -11,18 +11,18 @@ namespace Abc.Tests.Data.Common
         public override void TestInitialize()
         {
             base.TestInitialize();
-            obj = new TestClass();
+            Obj = new TestClass();
         }
         [TestMethod]
         public void ValidFromTest()
         {
-            IsNullableProperty(() => obj.ValidFrom, x => obj.ValidFrom = x);
+            IsNullableProperty(() => Obj.ValidFrom, x => Obj.ValidFrom = x);
         }
 
         [TestMethod]
         public void ValidToTest()
         {
-            IsNullableProperty(() => obj.ValidTo, x => obj.ValidTo = x); 
+            IsNullableProperty(() => Obj.ValidTo, x => Obj.ValidTo = x); 
         }   
     }
 }

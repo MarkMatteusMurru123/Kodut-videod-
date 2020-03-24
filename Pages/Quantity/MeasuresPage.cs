@@ -11,8 +11,8 @@ namespace Abc.Pages.Quantity
             PageTitle = "Measures";
         }
 
-        public override string ItemId => Item?.ID?? string.Empty;
-        protected internal override string GetPageURL() => "/Quantity/Measures";
+        public override string ItemId => Item?.Id?? string.Empty;
+        protected internal override string GetPageUrl() => "/Quantity/Measures";
         protected internal override Measure ToObject(MeasureView view)
         {
             return MeasureViewFactory.Create(view);

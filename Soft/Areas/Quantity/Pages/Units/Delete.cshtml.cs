@@ -23,7 +23,7 @@ namespace Soft.Areas.Quantity.Pages.Units
         public async Task<IActionResult> OnPostAsync(string id, string fixedFilter, string fixedValue)
         {
             await DeleteObject(id, fixedFilter, fixedValue);
-            return Redirect(IndexURL);
+            return Redirect(IndexUrl);
         }
 
 

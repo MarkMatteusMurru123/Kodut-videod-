@@ -8,13 +8,13 @@ namespace Abc.Tests
         [TestInitialize]
         public override void TestInitialize()
         {
-            obj = new TClass();
-            type = obj.GetType();
+            Obj = new TClass();
+            Type = Obj.GetType();
         }
         [TestMethod]
         public void CanCreateTest()
         {
-            Assert.IsNotNull(obj);
+            Assert.IsNotNull(Obj);
         }
          
     }

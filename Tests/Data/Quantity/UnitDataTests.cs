@@ -10,7 +10,7 @@ namespace Abc.Tests.Data.Quantity
         [TestMethod]
         public void MeasureIdTest()
         {
-            IsNullableProperty(() => obj.MeasureId, x => obj.MeasureId = x);
+            IsNullableProperty(() => Obj.MeasureId, x => Obj.MeasureId = x);
         }
     }
 }

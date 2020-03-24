@@ -22,7 +22,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
         public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
             await UpdateObject(fixedFilter, fixedValue);
-            return Redirect(IndexURL);
+            return Redirect(IndexUrl);
         }
 
 

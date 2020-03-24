@@ -10,7 +10,7 @@ namespace Abc.Tests.Data.Quantity
         [TestMethod]
         public void FactorTest()
         {
-            IsProperty(() => obj.Factor, x => obj.Factor = x);
+            IsProperty(() => Obj.Factor, x => Obj.Factor = x);
         }
 
         
@@ -18,12 +18,12 @@ namespace Abc.Tests.Data.Quantity
         [TestMethod]
         public void SystemOfUnitsIdTest()
         {
-            IsNullableProperty(() => obj.SystemOfUnitsId, x => obj.SystemOfUnitsId = x);
+            IsNullableProperty(() => Obj.SystemOfUnitsId, x => Obj.SystemOfUnitsId = x);
         }
         [TestMethod]
         public void UnitIdTest()
         {
-            IsNullableProperty(() => obj.UnitId, x => obj.UnitId = x);
+            IsNullableProperty(() => Obj.UnitId, x => Obj.UnitId = x);
         }
     }
 }

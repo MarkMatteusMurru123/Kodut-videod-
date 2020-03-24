@@ -6,18 +6,18 @@ namespace Abc.Tests
 {
     public abstract class BaseClassTests<TClass, TBaseClass> : BaseTests
     {
-        protected TClass obj;
+        protected TClass Obj;
        
 
         [TestInitialize]
         public virtual void TestInitialize()
         {
-            type = typeof(TClass);  
+            Type = typeof(TClass);  
         }
         [TestMethod]
         public void IsInheritedTest()
         {
-            Assert.AreEqual(typeof(TBaseClass), type.BaseType);
+            Assert.AreEqual(typeof(TBaseClass), Type.BaseType);
         }
 
         

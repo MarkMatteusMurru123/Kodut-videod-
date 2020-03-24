@@ -17,15 +17,15 @@ namespace Abc.Aids {
             return type is null ? string.Empty : type.Namespace;
         }
         public static List<MemberInfo> Members(Type type,
-            BindingFlags f = PublicBindingFlagsFor.AllMembers,
+            BindingFlags f = PublicBindingFlagsFor.allMembers,
             bool clean = true) {
             if (type is null) return new List<MemberInfo>();
             var l = type.GetMembers(f).ToList();
-            if (clean) removeSurrogates(l);
+            if (clean) RemoveSurrogates(l);
             return l;
         }
         public static List<PropertyInfo> Properties(Type type,
-            BindingFlags f = PublicBindingFlagsFor.AllMembers) {
+            BindingFlags f = PublicBindingFlagsFor.allMembers) {
             return type?.GetProperties(f).ToList() ?? new List<PropertyInfo>();
         }
         public static PropertyInfo Property<T>(string name) {
@@ -35,14 +35,14 @@ namespace Abc.Aids {
             var name = GetMember.Name(ex);
             return Safe.Run(() => typeof(T).GetProperty(name), null);
         }
-        private static void removeSurrogates(IList<MemberInfo> l) {
+        private static void RemoveSurrogates(IList<MemberInfo> l) {
             for (var i = l.Count; i > 0; i--) {
                 var m = l[i - 1];
-                if (!isSurrogate(m)) continue;
+                if (!IsSurrogate(m)) continue;
                 l.RemoveAt(i - 1);
             }
         }
-        private static bool isSurrogate(MemberInfo m) {
+        private static bool IsSurrogate(MemberInfo m) {
             var n = m.Name;
             if (string.IsNullOrEmpty(n)) return false;
             if (n.Contains(g)) return true;
@@ -57,11 +57,11 @@ namespace Abc.Aids {
             if (obj is null) return l;
             foreach (var p in Properties(obj.GetType())) {
                 if (!p.CanWrite) continue;
-                addValue(p, obj, l);
+                AddValue(p, obj, l);
             }
             return l;
         }
-        private static void addValue(PropertyInfo p, object o, List<object> l) {
+        private static void AddValue(PropertyInfo p, object o, List<object> l) {
             var indexer = p.GetIndexParameters();
             if (indexer.Length == 0 ) l.Add(p.GetValue(o));
             else {

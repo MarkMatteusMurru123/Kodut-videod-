@@ -8,7 +8,7 @@
         [TestMethod]
         public void IsAbstract()
         {
-            Assert.IsTrue(type.IsAbstract);
+            Assert.IsTrue(Type.IsAbstract);
         }
     }
 }

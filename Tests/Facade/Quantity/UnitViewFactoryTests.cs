@@ -15,7 +15,7 @@ namespace Abc.Tests.Facade.Quantity
         [TestInitialize]
         public virtual void TestInitialize()
         {
-            type = typeof(UnitViewFactory);
+            Type = typeof(UnitViewFactory);
         }
         [TestMethod]
         public void CreateTest()

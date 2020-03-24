@@ -38,7 +38,7 @@ namespace Abc.Tests.Pages.Quantity
             var m = new Measure(_data);
             _measures.Add(m).GetAwaiter();
             AddRandomMeasures();
-            obj = new TestClass(_units, _measures);
+            Obj = new TestClass(_units, _measures);
         }
 
         private void AddRandomMeasures()
@@ -55,42 +55,42 @@ namespace Abc.Tests.Pages.Quantity
         public void ItemIdTest()
         {
             var item = GetRandom.Object<UnitView>();
-            obj.Item = item;
-            Assert.AreEqual(item.ID, obj.ItemId);
-            obj.Item = null;
-            Assert.AreEqual(string.Empty, obj.ItemId);
+            Obj.Item = item;
+            Assert.AreEqual(item.Id, Obj.ItemId);
+            Obj.Item = null;
+            Assert.AreEqual(string.Empty, Obj.ItemId);
         }
         [TestMethod]
-        public void PageTitleTest() => Assert.AreEqual("Units", obj.PageTitle);
+        public void PageTitleTest() => Assert.AreEqual("Units", Obj.PageTitle);
         [TestMethod]
-        public void PageUrlTest() => Assert.AreEqual("/Quantity/Units", obj.PageURL);
+        public void PageUrlTest() => Assert.AreEqual("/Quantity/Units", Obj.PageUrl);
 
         [TestMethod]
         public void ToObjectTest()
         {
             var view = GetRandom.Object<UnitView>();
-            var o = obj.ToObject(view);
+            var o = Obj.ToObject(view);
             TestArePropertyValuesEqual(view, o.Data);
         }
         [TestMethod]
         public void ToViewTest()
         {
             var d = GetRandom.Object<UnitData>();
-            var view = obj.ToView(new Unit(d));
+            var view = Obj.ToView(new Unit(d));
             TestArePropertyValuesEqual(view, d);
 
         }
         [TestMethod]
         public void GetMeasureNameTest()
         {
-            var name = obj.GetMeasureName(_data.ID);
+            var name = Obj.GetMeasureName(_data.Id);
             Assert.AreEqual(_data.Name, name);
         }
         [TestMethod]
         public void MeasuresTest()
         {
             var list = _measures.Get().GetAwaiter().GetResult();
-            Assert.AreEqual(list.Count, obj.Measures.Count());
+            Assert.AreEqual(list.Count, Obj.Measures.Count());
         }
     }
    

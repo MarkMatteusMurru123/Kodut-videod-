@@ -6,15 +6,15 @@ using System.Linq.Expressions;
 namespace Abc.Aids {
     public class GetMember {
         public static string Name<T>(Expression<Func<T, object>> ex) {
-            return Safe.Run(()=>name(ex.Body), string.Empty);
+            return Safe.Run(()=>Name(ex.Body), string.Empty);
         }
         public static string Name<T, TResult>(Expression<Func<T, TResult>> ex)
         {
-            return Safe.Run(() => name(ex.Body), string.Empty);
+            return Safe.Run(() => Name(ex.Body), string.Empty);
         }
 
         public static string Name<T>(Expression<Action<T>> ex) {
-            return Safe.Run(() => name(ex.Body), string.Empty);
+            return Safe.Run(() => Name(ex.Body), string.Empty);
         }
         public static string DisplayName<T>(Expression<Func<T, object>> ex) {
             return Safe.Run(() => {
@@ -27,26 +27,26 @@ namespace Abc.Aids {
             }, string.Empty);
         }
 
-        private static string name(Expression ex) {
+        private static string Name(Expression ex) {
             var member = ex as MemberExpression;
             var method = ex as MethodCallExpression;
             var operand = ex as UnaryExpression;
-            if (!(member is null)) return name(member);
-            if (!(method is null)) return name(method);
-            if (!(operand is null)) return name(operand);
+            if (!(member is null)) return Name(member);
+            if (!(method is null)) return Name(method);
+            if (!(operand is null)) return Name(operand);
             return string.Empty;
         }
 
-        private static string name(MemberExpression ex) { return ex?.Member.Name ?? string.Empty; }
+        private static string Name(MemberExpression ex) { return ex?.Member.Name ?? string.Empty; }
 
-        private static string name(MethodCallExpression ex) {
+        private static string Name(MethodCallExpression ex) {
             return ex?.Method.Name ?? string.Empty;
         }
-        private static string name(UnaryExpression ex) {
+        private static string Name(UnaryExpression ex) {
             var member = ex?.Operand as MemberExpression;
             var method = ex?.Operand as MethodCallExpression;
-            if (!(member is null)) return name(member);
-            if (!(method is null)) return name(method);
+            if (!(member is null)) return Name(member);
+            if (!(method is null)) return Name(method);
             return string.Empty;
         }
     }

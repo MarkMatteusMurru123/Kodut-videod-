@@ -11,14 +11,14 @@ namespace Abc.Infra
         where TData: PeriodData, new()
         where TDomain : Entity<TData>, new()
     {
-        protected internal DbContext db;
-        protected internal DbSet<TData> dbSet;
+        protected internal DbContext Db;
+        protected internal DbSet<TData> DbSet;
 
 
         protected BaseRepository(DbContext c, DbSet<TData> s)
         {
-            db = c;
-            dbSet = s;
+            Db = c;
+            DbSet = s;
         }
         public virtual async Task<List<TDomain>> Get()
         {
@@ -36,14 +36,14 @@ namespace Abc.Infra
 
         protected internal virtual IQueryable<TData> CreateSqlQuery()
         {
-            var query = from s in dbSet select s; //tehakse sql päring
+            var query = from s in DbSet select s; //tehakse sql päring
             return query;
         }
 
-        public async Task<TDomain> Get(string ID)
+        public async Task<TDomain> Get(string id)
         {
-            if (ID is null) return new TDomain();
-            var d = await GetData(ID);
+            if (id is null) return new TDomain();
+            var d = await GetData(id);
             var obj = new TDomain
             {
                 Data = d
@@ -54,29 +54,29 @@ namespace Abc.Infra
 
         protected abstract Task<TData> GetData(string id);
 
-        public async Task Delete(string ID)
+        public async Task Delete(string id)
         { 
-            if (ID is null) return; 
-            var v = await dbSet.FindAsync(ID);
+            if (id is null) return; 
+            var v = await DbSet.FindAsync(id);
             if (v is null) return;
-            dbSet.Remove(v); 
-            await db.SaveChangesAsync();
+            DbSet.Remove(v); 
+            await Db.SaveChangesAsync();
         }
 
         public async Task Add(TDomain obj)
         {
             if (obj?.Data is null) return;
-            dbSet.Add(obj.Data);
-            await db.SaveChangesAsync();
+            DbSet.Add(obj.Data);
+            await Db.SaveChangesAsync();
         }
 
         public async Task Update(TDomain obj)
         {
-            db.Attach(obj.Data).State = EntityState.Modified;
+            Db.Attach(obj.Data).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await Db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

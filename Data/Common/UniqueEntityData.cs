@@ -2,6 +2,6 @@
 {
     public abstract class UniqueEntityData : PeriodData
     {
-        public string ID { get; set; }
+        public string Id { get; set; }
     }
 }

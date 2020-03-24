@@ -23,7 +23,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
             await DeleteObject(id, fixedFilter, fixedValue);
-            return Redirect(IndexURL);
+            return Redirect(IndexUrl);
         }
 
 

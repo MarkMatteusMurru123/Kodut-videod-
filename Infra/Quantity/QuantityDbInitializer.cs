@@ -8,20 +8,20 @@ namespace Abc.Infra.Quantity
     {
         internal static MeasureData Time = new MeasureData
         {
-            ID = "Time", Name = "Time", Code = "t",
+            Id = "Time", Name = "Time", Code = "t",
             Definition = "In physical science, time is defined as a measurement, " +
                          "or as what the clock face reads."
         };
 
         internal static MeasureData Length = new MeasureData
         {
-            ID = "Length", Name = "Length", Code = "l",
+            Id = "Length", Name = "Length", Code = "l",
             Definition = "The measurement or extent of something from end to end."
         };
 
         internal static MeasureData Mass = new MeasureData
         {
-            ID = "Mass", Name = "Mass", Code = "m",
+            Id = "Mass", Name = "Mass", Code = "m",
             Definition = "The quantity of matter which a body contains, as measured by "+
             "its acceleration under a given force or by the force exerted on "+
             "it by a gravitational field"
@@ -29,7 +29,7 @@ namespace Abc.Infra.Quantity
 
         internal static MeasureData Current = new MeasureData
         {
-            ID = "Current", Name = "Electric Current", Code = "I",
+            Id = "Current", Name = "Electric Current", Code = "I",
             Definition = "An electric current is the rate of flow of electric charge " +
                          "past a point or region. An electric current is said to exist " +
                          "when there is a net flow of electric charge through a region." +
@@ -41,14 +41,14 @@ namespace Abc.Infra.Quantity
 
         internal static MeasureData Temperature = new MeasureData
         {
-            ID = "Temperature", Name = "Thermodynamic Temperature", Code = "T",
+            Id = "Temperature", Name = "Thermodynamic Temperature", Code = "T",
             Definition = "Thermodynamic temperature is the absolute measure of temperature " +
                          "and is one of the principal parameters of thermodynamics."
         };
 
         internal static MeasureData Substance = new MeasureData
         {
-            ID = "Substance", Name = "Amount of Substance", Code = "n",
+            Id = "Substance", Name = "Amount of Substance", Code = "n",
             Definition = "In chemistry, the amount of substance in a given " +
                          "sample of matter is the number of discrete atomic-scale " +
                          "particles in it; where the particles may be molecules, " +
@@ -58,7 +58,7 @@ namespace Abc.Infra.Quantity
 
         internal static MeasureData Luminous = new MeasureData
         {
-            ID = "Luminous", Name = "Luminous Intensity", Code = "Iv",
+            Id = "Luminous", Name = "Luminous Intensity", Code = "Iv",
             Definition = "In photometry, luminous intensity is a measure of the " +
                          "wavelength-weighted power emitted by a light source in a " +
                          "particular direction per unit solid angle, based on the " +
@@ -86,20 +86,20 @@ namespace Abc.Infra.Quantity
         public const string millenniumName = "Millennium";
 
         internal static List<UnitData> TimeUnits => new List<UnitData> {
-            CreateUnitData(Time.ID, centuriesName),
-            CreateUnitData(Time.ID, decadesName),
-            CreateUnitData(Time.ID, daysName),
-            CreateUnitData(Time.ID, fortnightsName),
-            CreateUnitData(Time.ID, hoursName, null, "h"),
-            CreateUnitData(Time.ID, microsecondsName),
-            CreateUnitData(Time.ID, millenniumName),
-            CreateUnitData(Time.ID, millisecondsName),
-            CreateUnitData(Time.ID, minutesName, null, "min"),
-            CreateUnitData(Time.ID, monthsName),
-            CreateUnitData(Time.ID, nanosecondsName),
-            CreateUnitData(Time.ID, secondsName, null,  "sec"),
-            CreateUnitData(Time.ID, weeksName),
-            CreateUnitData(Time.ID, yearsName)
+            CreateUnitData(Time.Id, centuriesName),
+            CreateUnitData(Time.Id, decadesName),
+            CreateUnitData(Time.Id, daysName),
+            CreateUnitData(Time.Id, fortnightsName),
+            CreateUnitData(Time.Id, hoursName, null, "h"),
+            CreateUnitData(Time.Id, microsecondsName),
+            CreateUnitData(Time.Id, millenniumName),
+            CreateUnitData(Time.Id, millisecondsName),
+            CreateUnitData(Time.Id, minutesName, null, "min"),
+            CreateUnitData(Time.Id, monthsName),
+            CreateUnitData(Time.Id, nanosecondsName),
+            CreateUnitData(Time.Id, secondsName, null,  "sec"),
+            CreateUnitData(Time.Id, weeksName),
+            CreateUnitData(Time.Id, yearsName)
         };
 
         public const string astronomicalUnitsName = "AstronomicalUnits";
@@ -137,39 +137,39 @@ namespace Abc.Infra.Quantity
         public const string yardsName = "Yards";
         internal static List<UnitData> LengthUnits => new List<UnitData>
         {
-            CreateUnitData(Length.ID, astronomicalUnitsName),
-            CreateUnitData(Length.ID, angstromsName),
-            CreateUnitData(Length.ID, centimetersName),
-            CreateUnitData(Length.ID, chainsName),
-            CreateUnitData(Length.ID, cubitsName),
-            CreateUnitData(Length.ID, decametersName),
-            CreateUnitData(Length.ID, decimetersName),
-            CreateUnitData(Length.ID, feetName),
-            CreateUnitData(Length.ID, fathomsName),
-            CreateUnitData(Length.ID, furlongsName),
-            CreateUnitData(Length.ID, gigametersName),
-            CreateUnitData(Length.ID, handsName),
-            CreateUnitData(Length.ID, hectometersName),
-            CreateUnitData(Length.ID, inchesName),
-            CreateUnitData(Length.ID, kilometersName),
-            CreateUnitData(Length.ID, lightYearsName),
-            CreateUnitData(Length.ID, lightSecondsName),
-            CreateUnitData(Length.ID, linksName),
-            CreateUnitData(Length.ID, metersName),
-            CreateUnitData(Length.ID, megametersName),
-            CreateUnitData(Length.ID, micronsName),
-            CreateUnitData(Length.ID, milesName),
-            CreateUnitData(Length.ID, millimetersName),
-            CreateUnitData(Length.ID, millimicronsName),
-            CreateUnitData(Length.ID, nanometersName),
-            CreateUnitData(Length.ID, nauticalMilesName),
-            CreateUnitData(Length.ID, pacesName),
-            CreateUnitData(Length.ID, parsecsName),
-            CreateUnitData(Length.ID, picasName),
-            CreateUnitData(Length.ID, pointsName),
-            CreateUnitData(Length.ID, rodsName),
-            CreateUnitData(Length.ID, yardsName),
-            CreateUnitData(Length.ID, micromicronsName),
+            CreateUnitData(Length.Id, astronomicalUnitsName),
+            CreateUnitData(Length.Id, angstromsName),
+            CreateUnitData(Length.Id, centimetersName),
+            CreateUnitData(Length.Id, chainsName),
+            CreateUnitData(Length.Id, cubitsName),
+            CreateUnitData(Length.Id, decametersName),
+            CreateUnitData(Length.Id, decimetersName),
+            CreateUnitData(Length.Id, feetName),
+            CreateUnitData(Length.Id, fathomsName),
+            CreateUnitData(Length.Id, furlongsName),
+            CreateUnitData(Length.Id, gigametersName),
+            CreateUnitData(Length.Id, handsName),
+            CreateUnitData(Length.Id, hectometersName),
+            CreateUnitData(Length.Id, inchesName),
+            CreateUnitData(Length.Id, kilometersName),
+            CreateUnitData(Length.Id, lightYearsName),
+            CreateUnitData(Length.Id, lightSecondsName),
+            CreateUnitData(Length.Id, linksName),
+            CreateUnitData(Length.Id, metersName),
+            CreateUnitData(Length.Id, megametersName),
+            CreateUnitData(Length.Id, micronsName),
+            CreateUnitData(Length.Id, milesName),
+            CreateUnitData(Length.Id, millimetersName),
+            CreateUnitData(Length.Id, millimicronsName),
+            CreateUnitData(Length.Id, nanometersName),
+            CreateUnitData(Length.Id, nauticalMilesName),
+            CreateUnitData(Length.Id, pacesName),
+            CreateUnitData(Length.Id, parsecsName),
+            CreateUnitData(Length.Id, picasName),
+            CreateUnitData(Length.Id, pointsName),
+            CreateUnitData(Length.Id, rodsName),
+            CreateUnitData(Length.Id, yardsName),
+            CreateUnitData(Length.Id, micromicronsName),
         };
 
 
@@ -192,23 +192,23 @@ namespace Abc.Infra.Quantity
         public const string tonsName = "Tons";
         internal static List<UnitData> MassUnits => new List<UnitData>
         {
-            CreateUnitData(Mass.ID, centigramsName),
-            CreateUnitData(Mass.ID, decagramsName),
-            CreateUnitData(Mass.ID, decigramsName),
-            CreateUnitData(Mass.ID, dramsName),
-            CreateUnitData(Mass.ID, grainsName),
-            CreateUnitData(Mass.ID, gramsName, null, "g"),
-            CreateUnitData(Mass.ID, hectogramsName),
-            CreateUnitData(Mass.ID, kilogramsName, null, "kg"),
-            CreateUnitData(Mass.ID, longTonsName),
-            CreateUnitData(Mass.ID, metricTonsName, null, "T"),
-            CreateUnitData(Mass.ID, microgramsName),
-            CreateUnitData(Mass.ID, milligramsName),
-            CreateUnitData(Mass.ID, nanogramsName),
-            CreateUnitData(Mass.ID, ouncesName),
-            CreateUnitData(Mass.ID, poundsName),
-            CreateUnitData(Mass.ID, stonesName),
-            CreateUnitData(Mass.ID, tonsName)
+            CreateUnitData(Mass.Id, centigramsName),
+            CreateUnitData(Mass.Id, decagramsName),
+            CreateUnitData(Mass.Id, decigramsName),
+            CreateUnitData(Mass.Id, dramsName),
+            CreateUnitData(Mass.Id, grainsName),
+            CreateUnitData(Mass.Id, gramsName, null, "g"),
+            CreateUnitData(Mass.Id, hectogramsName),
+            CreateUnitData(Mass.Id, kilogramsName, null, "kg"),
+            CreateUnitData(Mass.Id, longTonsName),
+            CreateUnitData(Mass.Id, metricTonsName, null, "T"),
+            CreateUnitData(Mass.Id, microgramsName),
+            CreateUnitData(Mass.Id, milligramsName),
+            CreateUnitData(Mass.Id, nanogramsName),
+            CreateUnitData(Mass.Id, ouncesName),
+            CreateUnitData(Mass.Id, poundsName),
+            CreateUnitData(Mass.Id, stonesName),
+            CreateUnitData(Mass.Id, tonsName)
         }; internal static List<UnitData> CurrentUnits => new List<UnitData>
         {
 
@@ -219,10 +219,10 @@ namespace Abc.Infra.Quantity
         public const string rankineName = "Rankine";
         internal static List<UnitData> TemperatureUnits => new List<UnitData>
         {
-            CreateUnitData(Temperature.ID, celsiusName, null, "°C"),
-            CreateUnitData(Temperature.ID, fahrenheitName, null, "°F"),
-            CreateUnitData(Temperature.ID, kelvinName, null, "K"),
-            CreateUnitData(Temperature.ID, rankineName, null, "°R")
+            CreateUnitData(Temperature.Id, celsiusName, null, "°C"),
+            CreateUnitData(Temperature.Id, fahrenheitName, null, "°F"),
+            CreateUnitData(Temperature.Id, kelvinName, null, "K"),
+            CreateUnitData(Temperature.Id, rankineName, null, "°R")
 
         };
 
@@ -230,7 +230,7 @@ namespace Abc.Infra.Quantity
         {
             return new UnitData
             {
-                ID = id,
+                Id = id,
                 MeasureId = measureId,
                 Name = name?? id, //kui tühi, siis saab id väärtuse
                 Code = code

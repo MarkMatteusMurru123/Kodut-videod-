@@ -11,10 +11,10 @@ namespace Abc.Tests.Data
         {
             return $"{assembly}.{name}";
         }
-        [TestMethod] public void IsCommonTested() {isAllTested(assembly, Namespace("Common"));}
-        [TestMethod] public void IsMoneyTested() { isAllTested(assembly, Namespace("Money"));}
-        [TestMethod] public void IsQuantityTested() { isAllTested(assembly, Namespace("Quantity"));}
-        [TestMethod] public void IsTested() { isAllTested(assembly, base.Namespace("Data")); }
+        [TestMethod] public void IsCommonTested() {IsAllTested(assembly, Namespace("Common"));}
+        [TestMethod] public void IsMoneyTested() { IsAllTested(assembly, Namespace("Money"));}
+        [TestMethod] public void IsQuantityTested() { IsAllTested(assembly, Namespace("Quantity"));}
+        [TestMethod] public void IsTested() { IsAllTested(assembly, base.Namespace("Data")); }
 
 
     }

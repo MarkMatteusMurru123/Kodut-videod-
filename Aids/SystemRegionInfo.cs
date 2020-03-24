@@ -16,13 +16,13 @@ namespace Abc.Aids {
                 var regions = SystemEnumerable.Convert(cultures, SystemCultureInfo.ToRegionInfo);
                 regions = SystemEnumerable.Distinct(regions);
                 var list = regions.ToList();
-                removeNotCountries(list);
+                RemoveNotCountries(list);
                 regions = SystemEnumerable.OrderBy(list.ToArray(), p => p.EnglishName);
                 return regions.ToList();
             }, new List<RegionInfo>());
         }
 
-        private static void removeNotCountries(List<RegionInfo> cultures)
+        private static void RemoveNotCountries(List<RegionInfo> cultures)
         {
             for(var i = cultures.Count; i > 0; i--)
             {

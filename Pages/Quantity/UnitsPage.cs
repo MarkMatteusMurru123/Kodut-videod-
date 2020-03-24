@@ -20,7 +20,7 @@ namespace Abc.Pages.Quantity
             var measures = r.Get().GetAwaiter().GetResult();
             foreach (var m in measures) 
             {
-               list.Add(new SelectListItem(m.Data.Name, m.Data.ID)); 
+               list.Add(new SelectListItem(m.Data.Name, m.Data.Id)); 
             }
             return list;
 
@@ -29,9 +29,9 @@ namespace Abc.Pages.Quantity
         public IEnumerable<SelectListItem> Measures { get; }
 
 
-        public override string ItemId => Item?.ID?? string.Empty;
+        public override string ItemId => Item?.Id?? string.Empty;
 
-        protected internal override string GetPageURL() => "/Quantity/Units";
+        protected internal override string GetPageUrl() => "/Quantity/Units";
 
 
 
