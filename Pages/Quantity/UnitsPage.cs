@@ -29,7 +29,7 @@ namespace Abc.Pages.Quantity
         public IEnumerable<SelectListItem> Measures { get; }
 
 
-        public override string ItemId => Item.ID;
+        public override string ItemId => Item?.ID?? string.Empty;
 
         protected internal override string GetPageURL() => "/Quantity/Units";
 
