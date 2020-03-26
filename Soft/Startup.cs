@@ -33,6 +33,7 @@ namespace Soft
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IMeasuresRepository, MeasuresRepository>();
             services.AddScoped<IUnitsRepository, UnitsRepository>();
+            services.AddServerSideBlazor();
 
             services.AddRazorPages();
         }
@@ -63,6 +64,7 @@ namespace Soft
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }
