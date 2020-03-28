@@ -8,7 +8,8 @@ namespace Abc.Tests.Data.Quantity
     public class CommonTermDataTests :AbstractClassTests<CommonTermData, PeriodData>
     {
        private class TestClass : CommonTermData { }
-        public override void TestInitialize()
+        [TestInitialize]
+       public override void TestInitialize()
         {
             base.TestInitialize();
             Obj = new TestClass();
@@ -17,6 +18,16 @@ namespace Abc.Tests.Data.Quantity
         [TestMethod] public void MasterIdTest()
         {
             IsNullableProperty(() => Obj.MasterId,x=> Obj.MasterId=x);
+        }
+        [TestMethod]
+        public void TermIdTest()
+        {
+            IsNullableProperty(() => Obj.TermId, x => Obj.TermId = x);
+        }
+        [TestMethod]
+        public void PowerTest()
+        {
+            IsProperty(() => Obj.Power, x => Obj.Power = x);
         }
     }
 }

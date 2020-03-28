@@ -1,7 +1,7 @@
 ﻿
 namespace Abc.Data.Quantity
 {
-    public class UnitTermData : CommonTermData
+    public sealed class UnitTermData : CommonTermData
     {
     }
 }
