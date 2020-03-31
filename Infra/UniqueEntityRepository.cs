@@ -17,5 +17,8 @@ namespace Abc.Infra
         {
             return await DbSet.FirstOrDefaultAsync(m => m.Id == id);
         }
+
+        protected override string GetId(TDomain entity) => entity?.Data?.Id;
+
     }
 }
