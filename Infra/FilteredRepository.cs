@@ -29,16 +29,16 @@ namespace Abc.Infra
             return query;
         }
 
-        private IQueryable<TData> AddFixedFiltering(IQueryable<TData> query)
+        internal IQueryable<TData> AddFixedFiltering(IQueryable<TData> query)
         {
             var expression = CreateFixedWhereExpression();
             return (expression is null)? query: query.Where(expression);
         }
 
-        private Expression<Func<TData, bool>> CreateFixedWhereExpression()
+        internal Expression<Func<TData, bool>> CreateFixedWhereExpression()
         {
-            if (FixedFilter is null) return null;
-            if (FixedValue is null) return null;
+            if (string.IsNullOrWhiteSpace(FixedValue)) return null;
+            if (string.IsNullOrWhiteSpace(FixedFilter)) return null;
             var param = Expression.Parameter(typeof(TData), "s");
 
             var p = typeof(TData).GetProperty(FixedFilter);
@@ -55,19 +55,14 @@ namespace Abc.Infra
         internal IQueryable<TData> AddFiltering(IQueryable<TData> query)
         {
             if (string.IsNullOrEmpty(SearchString)) return query;
-            //s => s.Name.Contains(SearchString)
-            //                  || s.Code.Contains(SearchString)
-            //                  || s.ID.Contains(SearchString)
-            //                  || s.Definition.Contains(SearchString)
-            //                  || s.ValidFrom.ToString().Contains(SearchString)
-            //                  || s.ValidTo.ToString().Contains(SearchString)
             var expression = CreateWhereExpression();  
-            return query.Where(expression);
+            return expression is null ? query: query.Where(expression);
 
         }
 
         internal Expression<Func<TData, bool>> CreateWhereExpression()
         {
+            if (string.IsNullOrWhiteSpace(SearchString)) return null;
             var param = Expression.Parameter(typeof(TData), "s");
             Expression predicate = null;
             foreach (var p in typeof(TData).GetProperties())

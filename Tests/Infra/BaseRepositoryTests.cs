@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Abc.Aids;
 using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
@@ -12,10 +7,10 @@ using Abc.Infra.Quantity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Abc.Tests.Infra.Quantity
+namespace Abc.Tests.Infra
 {
     [TestClass]
-    public class BaseRepositoryTests : AbstractClassTests<BaseRepository<Measure,MeasureData>, object>
+    public class BaseRepositoryTests : AbstractClassTests<BaseRepository<Measure, MeasureData>, object>
     {
         private MeasureData data;  
 
