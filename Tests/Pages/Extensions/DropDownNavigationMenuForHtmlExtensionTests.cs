@@ -7,7 +7,7 @@ namespace Abc.Tests.Pages.Extensions {
     public class DropDownNavigationMenuForHtmlExtensionTests : BaseTests
     {
 
-        [TestInitialize] public virtual void TestInitialize() => type = typeof(DropDownNavigationMenuForHtmlExtension);
+        [TestInitialize] public virtual void TestInitialize() => Type = typeof(DropDownNavigationMenuForHtmlExtension);
 
         [TestMethod]
         public void DropDownNavigationMenuForTest()

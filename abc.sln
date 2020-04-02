@@ -17,12 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soft", "Soft\Soft.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{712398B9-BFBB-4418-974A-CB2C7548F5F3}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\Proge ajalogi (8).xlsx = ..\..\..\Downloads\Proge ajalogi (8).xlsx
+		..\..\..\Downloads\Proge ajalogi (9).xlsx = ..\..\..\Downloads\Proge ajalogi (9).xlsx
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{09941439-62E0-4A95-A297-BB87C087DDDA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aids", "Aids\Aids.csproj", "{72656989-767E-420B-A8B9-741A9B87A399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{62CC716B-9104-405F-AF2D-D016DEE605A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{72656989-767E-420B-A8B9-741A9B87A399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72656989-767E-420B-A8B9-741A9B87A399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72656989-767E-420B-A8B9-741A9B87A399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CC716B-9104-405F-AF2D-D016DEE605A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CC716B-9104-405F-AF2D-D016DEE605A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CC716B-9104-405F-AF2D-D016DEE605A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CC716B-9104-405F-AF2D-D016DEE605A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

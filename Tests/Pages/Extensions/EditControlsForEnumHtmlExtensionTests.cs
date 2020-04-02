@@ -12,7 +12,7 @@ namespace Abc.Tests.Pages.Extensions {
     [TestClass]
     public class EditControlsForEnumHtmlExtensionTests : BaseTests
     {
-        private class testClass : NamedView
+        private class TestClass : NamedView
         {
             public IsoGender Gender { get; set; }
         }
@@ -22,7 +22,7 @@ namespace Abc.Tests.Pages.Extensions {
         [TestMethod]
         public void EditControlsForEnumTest()
         {
-            var obj = new HtmlHelperMock<testClass>().EditControlsForEnum(x => x.Gender);
+            var obj = new HtmlHelperMock<TestClass>().EditControlsForEnum(x => x.Gender);
             Assert.IsInstanceOfType(obj, typeof(HtmlContentBuilder));
         }
 
@@ -31,7 +31,7 @@ namespace Abc.Tests.Pages.Extensions {
         {
             var selectList = new SelectList(Enum.GetNames(typeof(IsoGender)));
             var expected = new List<string> { "<div", "LabelFor", "DropDownListFor", "ValidationMessageFor", "</div>" };
-            var actual = EditControlsForEnumHtmlExtension.HtmlStrings(new HtmlHelperMock<testClass>(), 
+            var actual = EditControlsForEnumHtmlExtension.HtmlStrings(new HtmlHelperMock<TestClass>(), 
                 x => x.Gender, selectList);
             TestHtml.Strings(actual, expected);
         }

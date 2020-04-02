@@ -9,19 +9,19 @@ namespace Abc.Tests.Pages.Extensions {
 
     [TestClass] public class EditControlsForDropDownHtmlExtensionTests : BaseTests {
 
-        private readonly List<SelectListItem> items = new List<SelectListItem> {new SelectListItem("text", "value")};
+        private readonly List<SelectListItem> _items = new List<SelectListItem> {new SelectListItem("text", "value")};
 
         [TestInitialize] public virtual void TestInitialize() => Type = typeof(EditControlsForDropDownHtmlExtension);
 
         [TestMethod] public void EditControlsForDropDownTest() {
-            var obj = new HtmlHelperMock<UnitView>().EditControlsForDropDown(x => x.MeasureId, items);
+            var obj = new HtmlHelperMock<UnitView>().EditControlsForDropDown(x => x.MeasureId, _items);
             Assert.IsInstanceOfType(obj, typeof(HtmlContentBuilder));
         }
 
         [TestMethod] public void HtmlStringsTest() {
             var expected = new List<string> {"<div", "LabelFor", "DropDownListFor", "ValidationMessageFor", "</div>"};
             var actual = EditControlsForDropDownHtmlExtension.HtmlStrings(new HtmlHelperMock<UnitView>(),
-                x => x.MeasureId, items);
+                x => x.MeasureId, _items);
             TestHtml.Strings(actual, expected);
         }
 
