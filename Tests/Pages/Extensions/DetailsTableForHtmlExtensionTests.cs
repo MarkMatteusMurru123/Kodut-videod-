@@ -1,18 +1,16 @@
 ﻿using Abc.Pages.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Abc.Tests.Pages.Extensions
-{
-    [TestClass]
-    public class DetailsTableForHtmlExtensionTests : BaseTests
-    {
+namespace Abc.Tests.Pages.Extensions {
+
+    [TestClass] public class DetailsTableForHtmlExtensionTests : BaseTests {
+
         [TestInitialize] public virtual void TestInitialize() => Type = typeof(DetailsTableForHtmlExtension);
 
-        [TestMethod]
-        public void DetailsTableForTest()
-        {
+        [TestMethod] public void DetailsTableForTest() {
             Assert.Inconclusive();
         }
 
     }
+
 }

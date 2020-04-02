@@ -8,11 +8,11 @@ namespace Abc.Pages.Extensions {
 
         public static IHtmlContent SearchControlsFor(
             this IHtmlHelper htmlHelper, string filter, string linkToFullList, string text=backToFullList) {
-            var htmlStrings = ComposeHtmlStrings(filter, linkToFullList, text);
-            return new HtmlContentBuilder(htmlStrings);
+            var s = HtmlStrings(filter, linkToFullList, text);
+            return new HtmlContentBuilder(s);
         }
 
-        internal static List<object> ComposeHtmlStrings(string filter, string linkToFullList, string text) {
+        internal static List<object> HtmlStrings(string filter, string linkToFullList, string text) {
             var htmlStrings = new List<object> {
                 new HtmlString("<form asp-action=\"./Index\" method=\"get\">"),
                 new HtmlString("<div class=\"form-inline col-md-6\">"),

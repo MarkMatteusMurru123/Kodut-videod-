@@ -1,11 +1,12 @@
 ﻿using Abc.Pages.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Abc.Tests.Pages.Extensions
-{
+namespace Abc.Tests.Pages.Extensions {
+
     [TestClass]
     public class TableHeaderForHtmlExtensionTests : BaseTests
     {
+
         [TestInitialize] public virtual void TestInitialize() => Type = typeof(TableHeaderForHtmlExtension);
 
         [TestMethod]
@@ -15,4 +16,5 @@ namespace Abc.Tests.Pages.Extensions
         }
 
     }
+
 }

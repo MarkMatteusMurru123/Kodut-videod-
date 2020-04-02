@@ -4,23 +4,27 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Abc.Tests.Pages.Extensions
 {
     [TestClass]
-    public class ConstantsTests : BaseTests
+    public class ConstantsTests: BaseTests
     {
-        [TestInitialize] public virtual void TestInitialize()=>Type = typeof(Constants);
-        [TestMethod] public void UnspecifiedTest()=> Assert.AreEqual("Unspecified", Constants.Unspecified);
+        [TestInitialize] public virtual void TestInitialize()=> Type = typeof(Constants);
+
+        [TestMethod] public void UnspecifiedTest() => Assert.AreEqual("Unspecified", Constants.Unspecified);
+
         [TestMethod] public void CreateNewLinkTitleTest() => Assert.AreEqual("Create New", Constants.CreateNewLinkTitle);
         [TestMethod] public void EditLinkTitleTest() => Assert.AreEqual("Edit", Constants.EditLinkTitle);
         [TestMethod] public void DetailsLinkTitleTest() => Assert.AreEqual("Details", Constants.DetailsLinkTitle);
         [TestMethod] public void DeleteLinkTitleTest() => Assert.AreEqual("Delete", Constants.DeleteLinkTitle);
+
         [TestMethod] public void BusinessMenuTitleTest() => Assert.AreEqual("Business", Constants.BusinessMenuTitle);
         [TestMethod] public void PartiesMenuTitleTest() => Assert.AreEqual("Parties", Constants.PartiesMenuTitle);
         [TestMethod] public void DataMenuTitleTest() => Assert.AreEqual("Data", Constants.DataMenuTitle);
+
         [TestMethod] public void CountriesPageTitleTest() => Assert.AreEqual("Countries", Constants.CountriesPageTitle);
         [TestMethod] public void MeasuresPageTitleTest() => Assert.AreEqual("Measures", Constants.MeasuresPageTitle);
         [TestMethod] public void OrdersPageTitleTest() => Assert.AreEqual("Orders", Constants.OrdersPageTitle);
         [TestMethod] public void PaymentsPageTitleTest() => Assert.AreEqual("Payments", Constants.PaymentsPageTitle);
         [TestMethod] public void InventoryPageTitleTest() => Assert.AreEqual("Inventory", Constants.InventoryPageTitle);
-        [TestMethod] public void CataloguesPageTitleTest() => Assert.AreEqual("Catalogues", Constants.CataloguesPageTitle);
+        [TestMethod] public void CataloguesPageTitleTest() => Assert.AreEqual("Cataloques", Constants.CataloguesPageTitle);
         [TestMethod] public void ProductsPageTitleTest() => Assert.AreEqual("Products", Constants.ProductsPageTitle);
         [TestMethod] public void ProcessesPageTitleTest() => Assert.AreEqual("Processes", Constants.ProcessesPageTitle);
         [TestMethod] public void ProceduresPageTitleTest() => Assert.AreEqual("Procedures", Constants.ProceduresPageTitle);

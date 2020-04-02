@@ -1,18 +1,31 @@
-﻿using Abc.Pages.Extensions;
+﻿using System.Collections.Generic;
+using Abc.Facade.Quantity;
+using Abc.Pages.Extensions;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Abc.Tests.Pages.Extensions
-{
-    [TestClass]
-    public class EditControlsForDropDownHtmlExtensionTests : BaseTests
-    {
+namespace Abc.Tests.Pages.Extensions {
+
+    [TestClass] public class EditControlsForDropDownHtmlExtensionTests : BaseTests {
+
+        private readonly List<SelectListItem> items = new List<SelectListItem> {new SelectListItem("text", "value")};
+
         [TestInitialize] public virtual void TestInitialize() => Type = typeof(EditControlsForDropDownHtmlExtension);
 
-        [TestMethod]
-        public void EditControlsForDropDownTest()
-        {
-            Assert.Inconclusive();
+        [TestMethod] public void EditControlsForDropDownTest() {
+            var obj = new HtmlHelperMock<UnitView>().EditControlsForDropDown(x => x.MeasureId, items);
+            Assert.IsInstanceOfType(obj, typeof(HtmlContentBuilder));
         }
 
+        [TestMethod] public void HtmlStringsTest() {
+            var expected = new List<string> {"<div", "LabelFor", "DropDownListFor", "ValidationMessageFor", "</div>"};
+            var actual = EditControlsForDropDownHtmlExtension.HtmlStrings(new HtmlHelperMock<UnitView>(),
+                x => x.MeasureId, items);
+            TestHtml.Strings(actual, expected);
+        }
+
+
     }
+
 }

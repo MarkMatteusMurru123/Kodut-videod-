@@ -4,30 +4,28 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Abc.Pages.Extensions
-{
-    public static class DisplayControlsForHtmlExtension
-    { //expression peab minema funktsioonile ja funktsioon peab olema klassil ja tulemus peab olema propertyl. 
-        public static IHtmlContent DisplayControlsFor<TModel, TResult>(this IHtmlHelper<TModel>htmlHelper,
-            Expression<Func<TModel,TResult>> expression)
-        {
-            var s = HtmlString(htmlHelper, expression);
+namespace Abc.Pages.Extensions {
+
+    public static class DisplayControlsForHtmlExtension {
+
+        public static IHtmlContent DisplayControlsFor<TModel, TResult>(
+            this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression) {
+
+            var s = htmlStrings(htmlHelper, expression);
+
             return new HtmlContentBuilder(s);
         }
+
         public static IHtmlContent DisplayControlsFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TResult>> expression, string value)
-        {
-            var s = HtmlString(htmlHelper, expression, value);
-            return new HtmlContentBuilder(s);
+            Expression<Func<TModel, TResult>> expression, string value) {
+            var s = htmlStrings(htmlHelper, expression, value);
 
+            return new HtmlContentBuilder(s);
         }
 
-        internal static List<object>HtmlString<TClassType, TPropertyType>(IHtmlHelper<TClassType> htmlHelper,
-            Expression<Func<TClassType, TPropertyType>> expression)
-        {
-
-            return new List<object>
-            {
+        internal static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TResult>> expression) {
+            return new List<object> {
                 new HtmlString("<dt class=\"col-sm-2\">"),
                 htmlHelper.DisplayNameFor(expression),
                 new HtmlString("</dt>"),
@@ -36,11 +34,10 @@ namespace Abc.Pages.Extensions
                 new HtmlString("</dd>")
             };
         }
-        private static List<object> HtmlString<TModel, TResult>(IHtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TResult>> expression, string value)
-        {
-            return new List<object>
-            {
+
+        private static List<object> htmlStrings<TModel, TResult>(IHtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TResult>> expression, string value) {
+            return new List<object> {
                 new HtmlString("<dt class=\"col-sm-2\">"),
                 htmlHelper.DisplayNameFor(expression),
                 new HtmlString("</dt>"),
@@ -50,8 +47,6 @@ namespace Abc.Pages.Extensions
             };
         }
 
-        
-
-        
     }
+
 }
