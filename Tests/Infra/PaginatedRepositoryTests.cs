@@ -41,7 +41,7 @@ namespace Abc.Tests.Infra
             var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
             var c = new QuantityDbcontext(options);
             Obj = new TestClass(c, c.Measures);
-            count = GetRandom.UInt8(10, 30);
+            count = GetRandom.UInt8(20, 40);
             foreach (var p in c.Measures)
             {
                 c.Entry(p).State = EntityState.Deleted;
@@ -72,7 +72,8 @@ namespace Abc.Tests.Infra
                 Assert.AreEqual(expected, actual);
             }
             TestNextPage(0, true);
-            TestNextPage(GetRandom.Int32(1, Obj.TotalPages-1), true);
+            TestNextPage(1, true);
+            TestNextPage(GetRandom.Int32(2, Obj.TotalPages-1), true);
             TestNextPage(Obj.TotalPages, false); //järgmist pole
 
         }
@@ -85,7 +86,9 @@ namespace Abc.Tests.Infra
                 Assert.AreEqual(expected, actual);
             }
             TestPreviousPage(0, false); //eelmist pole
-            TestPreviousPage(GetRandom.Int32(1, Obj.TotalPages-1), true);
+            TestPreviousPage(1, false); 
+            TestPreviousPage(2, true);
+            TestPreviousPage(GetRandom.Int32(2, Obj.TotalPages), true);
             TestPreviousPage(Obj.TotalPages, true); //järgmine on
 
         }
