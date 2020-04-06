@@ -14,7 +14,7 @@ namespace Soft.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            QuantityDbcontext.InitializeTables(builder);
+            QuantityDbContext.InitializeTables(builder);
         }
     }
 }

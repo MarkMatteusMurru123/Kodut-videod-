@@ -13,7 +13,7 @@ namespace Soft
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var dbQuantity = services.GetRequiredService<QuantityDbcontext>();
+                var dbQuantity = services.GetRequiredService<QuantityDbContext>();
                 QuantityDbInitializer.Initialize(dbQuantity);
             }
             host.Run();

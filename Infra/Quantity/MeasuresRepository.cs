@@ -6,7 +6,7 @@ namespace Abc.Infra.Quantity
     public sealed class MeasuresRepository: UniqueEntityRepository <Measure, MeasureData>, IMeasuresRepository
     {
 
-        public MeasuresRepository(QuantityDbcontext c) : base(c, c.Measures)
+        public MeasuresRepository(QuantityDbContext c) : base(c, c.Measures)
         {
         }
 

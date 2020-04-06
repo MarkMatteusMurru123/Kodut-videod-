@@ -12,7 +12,7 @@ namespace Abc.Tests.Infra
     [TestClass]
     public class BaseRepositoryTests : AbstractClassTests<BaseRepository<Measure, MeasureData>, object>
     {
-        private MeasureData data;  
+        private MeasureData _data;  
 
         private class TestClass : SortedRepository<Measure, MeasureData>
         {
@@ -35,10 +35,10 @@ namespace Abc.Tests.Infra
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
-            var c = new QuantityDbcontext(options);
+            var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
+            var c = new QuantityDbContext(options);
             Obj = new TestClass(c, c.Measures);
-            data = GetRandom.Object<MeasureData>();//loon objekti
+            _data = GetRandom.Object<MeasureData>();//loon objekti
         }
         [TestMethod]
         public void GetTest()
@@ -47,7 +47,7 @@ namespace Abc.Tests.Infra
             var countBefore = Obj.Get().GetAwaiter().GetResult().Count;
             for (int i = 0; i < count; i++)
             {
-                data = GetRandom.Object<MeasureData>();
+                _data = GetRandom.Object<MeasureData>();
                 AddTest();
             }
             Assert.AreEqual(count + countBefore, Obj.Get().GetAwaiter().GetResult().Count);
@@ -64,10 +64,10 @@ namespace Abc.Tests.Infra
         public void DeleteTest()
         {
             AddTest();
-            var expected = Obj.Get(data.Id).GetAwaiter().GetResult(); 
-            TestArePropertyValuesEqual(data, expected.Data);
-            Obj.Delete(data.Id).GetAwaiter();
-            expected = Obj.Get(data.Id).GetAwaiter().GetResult(); //vastandtehe addiga.
+            var expected = Obj.Get(_data.Id).GetAwaiter().GetResult(); 
+            TestArePropertyValuesEqual(_data, expected.Data);
+            Obj.Delete(_data.Id).GetAwaiter();
+            expected = Obj.Get(_data.Id).GetAwaiter().GetResult(); //vastandtehe addiga.
             Assert.IsNull(expected.Data);
 
 
@@ -76,20 +76,20 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void  AddTest()
         {
-            var expected = Obj.Get(data.Id).GetAwaiter().GetResult(); //andmebaasist measure objekt kätte id järgi
+            var expected = Obj.Get(_data.Id).GetAwaiter().GetResult(); //andmebaasist measure objekt kätte id järgi
             Assert.IsNull(expected.Data);
-            Obj.Add(new Measure(data)).GetAwaiter(); //Lisan measureobjekti andmebaasi, enam pole null.
-            expected = Obj.Get(data.Id).GetAwaiter().GetResult(); //andmebaasist measure objekt kätte
-            TestArePropertyValuesEqual(data, expected.Data);
+            Obj.Add(new Measure(_data)).GetAwaiter(); //Lisan measureobjekti andmebaasi, enam pole null.
+            expected = Obj.Get(_data.Id).GetAwaiter().GetResult(); //andmebaasist measure objekt kätte
+            TestArePropertyValuesEqual(_data, expected.Data);
         }
         [TestMethod]
         public void UpdateTest()
         {
             AddTest();
             var newData = GetRandom.Object<MeasureData>();//loob uue randomi.
-            newData.Id = data.Id;
+            newData.Id = _data.Id;
             Obj.Update(new Measure(newData)).GetAwaiter();
-            var expected = Obj.Get(data.Id).GetAwaiter().GetResult();
+            var expected = Obj.Get(_data.Id).GetAwaiter().GetResult();
             TestArePropertyValuesEqual(newData,expected.Data);
         }
     }

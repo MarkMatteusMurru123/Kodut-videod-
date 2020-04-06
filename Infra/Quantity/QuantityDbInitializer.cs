@@ -245,14 +245,14 @@ namespace Abc.Infra.Quantity
         {
 
         };
-        public static void Initialize(QuantityDbcontext db)
+        public static void Initialize(QuantityDbContext db)
         {
             InitializeMeasures(db);
             InitializeUnits(db);
            
         }
 
-        private static void InitializeUnits(QuantityDbcontext db)
+        private static void InitializeUnits(QuantityDbContext db)
         {
             if (db.Units.Count()!= 0) return;
             db.Units.AddRange(TimeUnits);
@@ -265,7 +265,7 @@ namespace Abc.Infra.Quantity
             db.SaveChanges();
         }
 
-        private static void InitializeMeasures(QuantityDbcontext db)
+        private static void InitializeMeasures(QuantityDbContext db)
         {
             if (db.Measures.Count()!= 0) return;
             db.Measures.AddRange(Measures);

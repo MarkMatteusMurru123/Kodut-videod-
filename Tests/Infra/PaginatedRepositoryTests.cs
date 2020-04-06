@@ -32,16 +32,16 @@ namespace Abc.Tests.Infra
 
         }
 
-        private byte count;
+        private byte _count;
 
         [TestInitialize]
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
-            var c = new QuantityDbcontext(options);
+            var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
+            var c = new QuantityDbContext(options);
             Obj = new TestClass(c, c.Measures);
-            count = GetRandom.UInt8(20, 40);
+            _count = GetRandom.UInt8(20, 40);
             foreach (var p in c.Measures)
             {
                 c.Entry(p).State = EntityState.Deleted;
@@ -59,7 +59,7 @@ namespace Abc.Tests.Infra
         
         [TestMethod] public void TotalPagesTest()
         {
-            var expected = (int) Math.Ceiling(count / (double) Obj.PageSize);
+            var expected = (int) Math.Ceiling(_count / (double) Obj.PageSize);
             var totalPagesCount = Obj.TotalPages;
             Assert.AreEqual(expected, totalPagesCount);
         }
@@ -95,27 +95,27 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void GetTotalPagesTest()
         {
-            var expected = (int)Math.Ceiling(count / (double)Obj.PageSize);
+            var expected = (int)Math.Ceiling(_count / (double)Obj.PageSize);
             var totalPagesCount = Obj.GetTotalPages(Obj.PageSize);
             Assert.AreEqual(expected, totalPagesCount);
 
         }
         [TestMethod] public void CountTotalPagesTest()
         {
-            var expected = (int)Math.Ceiling(count / (double)Obj.PageSize);
-            var totalPagesCount = Obj.CountTotalPages(count, Obj.PageSize);
+            var expected = (int)Math.Ceiling(_count / (double)Obj.PageSize);
+            var totalPagesCount = Obj.CountTotalPages(_count, Obj.PageSize);
             Assert.AreEqual(expected, totalPagesCount);
 
         }
         [TestMethod] public void GetItemsCountTest()
         {
             var itemsCount = Obj.GetItemsCount();
-            Assert.AreEqual(count, itemsCount);
+            Assert.AreEqual(_count, itemsCount);
         }
 
         private void AddItems()
         {
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < _count; i++)
             {
                 Obj.Add(new Measure(GetRandom.Object<MeasureData>())).GetAwaiter();
             }

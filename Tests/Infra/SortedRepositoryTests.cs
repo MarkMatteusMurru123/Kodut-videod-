@@ -40,8 +40,8 @@ namespace Abc.Tests.Infra
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var options = new DbContextOptionsBuilder<QuantityDbcontext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
-            var c = new QuantityDbcontext(options);
+            var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
+            var c = new QuantityDbContext(options);
             Obj = new TestClass(c, c.Measures);
         }
 
