@@ -20,13 +20,25 @@ namespace Abc.Tests.Infra.Quantity
             var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
             _db = new QuantityDbContext(options);
             Obj = new MeasuresRepository(_db);
+            _count = GetRandom.UInt8(20, 40);
+            CleanDbSet();
+            AddItems();
+        }
+
+        [TestCleanup]
+        public void TestCleanUp()
+        {
+            CleanDbSet();
+        }
+
+        private void CleanDbSet()
+        {
             foreach (var e in _db.Measures)
             {
                 _db.Entry(e).State = EntityState.Deleted;
             }
 
-            _count = GetRandom.UInt8(20, 40);
-            AddItems();
+            _db.SaveChanges();
         }
 
         private void AddItems()

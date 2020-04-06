@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Soft.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +50,7 @@ namespace Soft.Migrations
                 name: "Measures",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     ValidFrom = table.Column<DateTime>(nullable: true),
                     ValidTo = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -59,14 +59,29 @@ namespace Soft.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Measures", x => x.ID);
+                    table.PrimaryKey("PK_Measures", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MeasureTerms",
+                columns: table => new
+                {
+                    MasterId = table.Column<string>(nullable: false),
+                    TermId = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Power = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MeasureTerms", x => new { x.MasterId, x.TermId });
                 });
 
             migrationBuilder.CreateTable(
                 name: "SystemsOfUnits",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     ValidFrom = table.Column<DateTime>(nullable: true),
                     ValidTo = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -75,7 +90,7 @@ namespace Soft.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SystemsOfUnits", x => x.ID);
+                    table.PrimaryKey("PK_SystemsOfUnits", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,7 +112,7 @@ namespace Soft.Migrations
                 name: "Units",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     ValidFrom = table.Column<DateTime>(nullable: true),
                     ValidTo = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -107,7 +122,22 @@ namespace Soft.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Units", x => x.ID);
+                    table.PrimaryKey("PK_Units", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnitTerms",
+                columns: table => new
+                {
+                    MasterId = table.Column<string>(nullable: false),
+                    TermId = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Power = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnitTerms", x => new { x.MasterId, x.TermId });
                 });
 
             migrationBuilder.CreateTable(
@@ -277,6 +307,9 @@ namespace Soft.Migrations
                 name: "Measures");
 
             migrationBuilder.DropTable(
+                name: "MeasureTerms");
+
+            migrationBuilder.DropTable(
                 name: "SystemsOfUnits");
 
             migrationBuilder.DropTable(
@@ -284,6 +317,9 @@ namespace Soft.Migrations
 
             migrationBuilder.DropTable(
                 name: "Units");
+
+            migrationBuilder.DropTable(
+                name: "UnitTerms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
