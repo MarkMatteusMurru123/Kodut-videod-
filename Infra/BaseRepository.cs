@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Abc.Data.Common;
 using Abc.Domain.Common;
@@ -45,10 +44,7 @@ namespace Abc.Infra
         {
             if (id is null) return new TDomain();
             var d = await GetData(id);
-            var obj = new TDomain
-            {
-                Data = d
-            };
+            var obj = ToDomainObject(d);
             return obj;
 
         }
@@ -58,7 +54,7 @@ namespace Abc.Infra
         public async Task Delete(string id)
         { 
             if (id is null) return; 
-            var v = await DbSet.FindAsync(id);
+            var v = await GetData(id);
             if (v is null) return;
             DbSet.Remove(v); 
             await Db.SaveChangesAsync();
@@ -74,7 +70,7 @@ namespace Abc.Infra
         public async Task Update(TDomain obj)
         {
             if (obj is null) return;
-            var v = await DbSet.FindAsync(GetId(obj));
+            var v = await GetData(GetId(obj));
             if (v is null) return;
             DbSet.Remove(v);
             DbSet.Add(obj.Data);
