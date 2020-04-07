@@ -12,41 +12,13 @@ namespace Abc.Tests.Infra.Quantity
     [TestClass]
     public class MeasuresRepositoryTests : RepositoryTests<MeasuresRepository, Measure, MeasureData>
     {
-        private QuantityDbContext _db;
-        private int _count;
         [TestInitialize] public override void TestInitialize()
         {
-            base.TestInitialize();
             var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options; //nuud on andmebaas kaasas, saab teha intergratsioonitestid
-            _db = new QuantityDbContext(options);
-            Obj = new MeasuresRepository(_db);
-            _count = GetRandom.UInt8(20, 40);
-            CleanDbSet();
-            AddItems();
-        }
-
-        [TestCleanup]
-        public void TestCleanUp()
-        {
-            CleanDbSet();
-        }
-
-        private void CleanDbSet()
-        {
-            foreach (var e in _db.Measures)
-            {
-                _db.Entry(e).State = EntityState.Deleted;
-            }
-
-            _db.SaveChanges();
-        }
-
-        private void AddItems()
-        {
-            for (var i = 0; i < _count; i++)
-            {
-                Obj.Add(new Measure(GetRandom.Object<MeasureData>())).GetAwaiter();
-            }
+            Db = new QuantityDbContext(options);
+            DbSet = ((QuantityDbContext) Db).Measures;
+            Obj = new MeasuresRepository((QuantityDbContext)Db);
+            base.TestInitialize();
         }
 
         protected override Type GetBaseType()
@@ -54,13 +26,6 @@ namespace Abc.Tests.Infra.Quantity
             return typeof(UniqueEntityRepository<Measure, MeasureData>);
         }
 
-        protected override void TestGetList()
-        {
-            Obj.PageIndex = GetRandom.Int32(2, Obj.TotalPages - 1);
-            var l = Obj.Get().GetAwaiter().GetResult();
-            Assert.AreEqual(Obj.PageSize, l.Count);
-
-        }
 
         protected override string GetId(MeasureData d) => d.Id;
         
