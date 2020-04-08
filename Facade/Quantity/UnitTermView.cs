@@ -9,5 +9,9 @@ namespace Abc.Facade.Quantity
         [Required]
         [DisplayName("Unit")]
         public string MasterId { get; set; }
+        public string GetId()
+        {
+            return $"{MasterId}.{TermId}";
+        }
     }
 }
