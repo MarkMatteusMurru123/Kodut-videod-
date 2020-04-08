@@ -13,7 +13,7 @@ namespace Abc.Pages.Quantity
 
        public override string ItemId => Item.Id;
        
-       protected internal override string GetPageUrl() => "/Quantity/SystemOfUnits";
+       protected internal override string GetPageUrl() => "/Quantity/SystemsOfUnits";
        protected internal override SystemOfUnits ToObject(SystemOfUnitsView view)
        {
            return SystemOfUnitsViewFactory.Create(view);

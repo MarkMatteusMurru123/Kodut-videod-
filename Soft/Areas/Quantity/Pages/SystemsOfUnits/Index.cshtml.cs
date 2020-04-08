@@ -2,7 +2,7 @@
 using Abc.Domain.Quantity;
 using Abc.Pages.Quantity;
 
-namespace Soft.Areas.Quantity.Pages.SystemOfUnits
+namespace Soft.Areas.Quantity.Pages.SystemsOfUnits
 {
     public class IndexModel : SystemsOfUnitsPage
     {

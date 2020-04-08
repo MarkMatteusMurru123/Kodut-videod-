@@ -33,6 +33,11 @@ namespace Soft
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IMeasuresRepository, MeasuresRepository>();
             services.AddScoped<IUnitsRepository, UnitsRepository>();
+            services.AddScoped<IMeasureTermsRepository, MeasureTermsRepository>();
+            services.AddScoped<IUnitTermsRepository, UnitTermsRepository>();
+            services.AddScoped<ISystemsOfUnitsRepository, SystemsOfUnitsRepository>();
+            services.AddScoped<IUnitFactorsRepository, UnitFactorsRepository>();
+
             services.AddServerSideBlazor();
 
             services.AddRazorPages();
