@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Abc.Data.Common;
 using Abc.Domain.Common;
 
 namespace Abc.Tests
 {
-    internal class BaseTestRepository<TObj, TData>
+    internal abstract class BaseTestRepositoryForPeriodEntity<TObj, TData>
         where TObj : Entity<TData>
-        where TData:UniqueEntityData, new()
+        where TData : PeriodData, new()
     {
         internal readonly List<TObj> List;
-        public BaseTestRepository()
+        public BaseTestRepositoryForPeriodEntity()
         {
-                List = new List<TObj>();
+            List = new List<TObj>();
         }
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
@@ -32,14 +34,16 @@ namespace Abc.Tests
         public async Task<TObj> Get(string id)
         {
             await Task.CompletedTask;
-            return List.Find(x =>x.Data.Id == id);
+            return List.Find(x => IsThis(x, id));
 
         }
+
+        protected abstract bool IsThis(TObj entity, string id);
 
         public async Task Delete(string id)
         {
             await Task.CompletedTask;
-            var obj = List.Find(x => x.Data.Id == id);
+            var obj = List.Find(x => IsThis(x, id));
             List.Remove(obj);
 
         }
@@ -53,10 +57,10 @@ namespace Abc.Tests
 
         public async Task Update(TObj obj)
         {
-            await Delete(obj.Data.Id);
+            await Delete(GetId(obj));
             List.Add(obj);
         }
 
-
+        protected abstract string GetId(TObj entity);
     }
 }

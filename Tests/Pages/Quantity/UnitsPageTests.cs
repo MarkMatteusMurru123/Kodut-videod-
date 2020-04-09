@@ -3,9 +3,11 @@ using Abc.Aids;
 using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
 using Abc.Facade.Quantity;
+using Abc.Infra.Quantity;
 using Abc.Pages;
 using Abc.Pages.Quantity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Soft.Areas.Quantity.Pages.MeasureTerms;
 
 namespace Abc.Tests.Pages.Quantity
 {
@@ -14,14 +16,14 @@ namespace Abc.Tests.Pages.Quantity
     {
         private class TestClass : UnitsPage
         {
-            internal TestClass(IUnitsRepository r, IMeasuresRepository m, IUnitTermsRepository t, IUnitFactorsRepository f) : base(r, m, t, f) { }
+            internal TestClass(IUnitsRepository r, IMeasuresRepository m) : base(r, m,null, null) { }
         }
 
-        private class UnitsRepository : BaseTestRepository<Unit,UnitData>, IUnitsRepository
+        private class UnitsRepository : BaseTestRepositoryForUniqueEntity<Unit,UnitData>, IUnitsRepository
         {
 
         }
-        private class MeasuresRepository : BaseTestRepository<Measure, MeasureData>, IMeasuresRepository
+        private class MeasuresRepository : BaseTestRepositoryForUniqueEntity<Measure, MeasureData>, IMeasuresRepository
         {
 
         }

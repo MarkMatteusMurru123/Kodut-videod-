@@ -17,15 +17,29 @@ namespace Abc.Tests.Pages.Quantity
             
         }
 
-        private class TestRepository : BaseTestRepository<Measure, MeasureData>, IMeasuresRepository
+        private class TestRepository : BaseTestRepositoryForUniqueEntity<Measure, MeasureData>, IMeasuresRepository
+        {
+            
+        }
+        private class TermRepository : BaseTestRepositoryForPeriodEntity<MeasureTerm, MeasureTermData>,IMeasureTermsRepository
         {
 
+            protected override bool IsThis(MeasureTerm entity, string id)
+            {
+                return true;
+            }
+
+            protected override string GetId(MeasureTerm entity)
+            {
+                return string.Empty;
+            }
         }
         [TestInitialize]
         public override void TestInitialize()
         {
             base.TestInitialize();
             var r = new TestRepository();
+            var t = new TermRepository();
             Obj = new TestClass(r, t); //???
         }
 
@@ -59,5 +73,19 @@ namespace Abc.Tests.Pages.Quantity
 
         }
 
+        [TestMethod]
+        public void LoadDetailsTest()
+        {
+            var v = GetRandom.Object<MeasureView>();
+            Obj.LoadDetails(v);
+            Assert.IsNotNull(Obj.Terms);
+        }
+        [TestMethod]
+        public void TermsTest()
+        {
+            IsReadOnlyProperty(Obj,nameof(Obj.Terms), Obj.Terms);
+        }
     }
+
+    
 }

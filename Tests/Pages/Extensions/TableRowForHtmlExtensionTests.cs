@@ -10,6 +10,12 @@ namespace Abc.Tests.Pages.Extensions {
         [TestMethod] public void TableRowForTest() {
             Assert.Inconclusive();
         }
+        [TestMethod]
+        public void TableRowWithSelectForTest()
+        {
+            Assert.Inconclusive();
+        }
+
 
     }
 
