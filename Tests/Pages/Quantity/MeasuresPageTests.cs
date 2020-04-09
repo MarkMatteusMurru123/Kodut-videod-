@@ -13,7 +13,7 @@ namespace Abc.Tests.Pages.Quantity
     {
         private class TestClass : MeasuresPage
         {
-            internal TestClass(IMeasuresRepository r) : base(r) { }
+            internal TestClass(IMeasuresRepository r, IMeasureTermsRepository t) : base(r, t) { }
             
         }
 
@@ -26,7 +26,7 @@ namespace Abc.Tests.Pages.Quantity
         {
             base.TestInitialize();
             var r = new TestRepository();
-            Obj = new TestClass(r);
+            Obj = new TestClass(r, t); //???
         }
 
         [TestMethod]

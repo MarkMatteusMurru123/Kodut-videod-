@@ -8,7 +8,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
     public class EditModel : MeasuresPage
     {
 
-        public EditModel(IMeasuresRepository r) : base(r)
+        public EditModel(IMeasuresRepository r, IMeasureTermsRepository t) : base(r, t)
         {
         }
         public async Task<IActionResult> OnGetAsync(string id, string fixedFilter, string fixedValue)

@@ -7,7 +7,7 @@ namespace Soft.Areas.Quantity.Pages.MeasureTerms
 {
     public class CreateModel : MeasureTermsPage
     {
-        public CreateModel(IMeasureTermsRepository r) : base(r)
+        public CreateModel(IMeasureTermsRepository r, IMeasuresRepository m) : base(r, m)
         {
 
         }

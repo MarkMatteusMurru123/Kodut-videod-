@@ -8,7 +8,7 @@ namespace Soft.Areas.Quantity.Pages.Units
     public class DeleteModel : UnitsPage
     {
 
-        public DeleteModel(IUnitsRepository r, IMeasuresRepository m ) : base(r, m)
+        public DeleteModel(IUnitsRepository r, IMeasuresRepository m, IUnitTermsRepository t, IUnitFactorsRepository f) : base(r, m, t, f)
         {
 
         }

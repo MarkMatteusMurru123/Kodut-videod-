@@ -8,7 +8,7 @@ namespace Soft.Areas.Quantity.Pages.Measures
     public class DeleteModel : MeasuresPage
     {
 
-        public DeleteModel(IMeasuresRepository r) : base(r)
+        public DeleteModel(IMeasuresRepository r, IMeasureTermsRepository t) : base(r, t)
         {
 
         }
