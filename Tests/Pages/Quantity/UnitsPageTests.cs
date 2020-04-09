@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Abc.Tests.Pages.Quantity
 {
     [TestClass]
-    public class UnitsPageTests : AbstractClassTests<UnitsPage, BasePage<IUnitsRepository, Unit, UnitView, UnitData>>
+    public class UnitsPageTests : AbstractClassTests<UnitsPage, CommonPage<IUnitsRepository, Unit, UnitView, UnitData>>
     {
         private class TestClass : UnitsPage
         {

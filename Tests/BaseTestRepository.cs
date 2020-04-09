@@ -9,10 +9,10 @@ namespace Abc.Tests
         where TObj : Entity<TData>
         where TData:UniqueEntityData, new()
     {
-        private readonly List<TObj> _list;
+        internal readonly List<TObj> List;
         public BaseTestRepository()
         {
-                _list = new List<TObj>();
+                List = new List<TObj>();
         }
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
@@ -26,35 +26,35 @@ namespace Abc.Tests
         public async Task<List<TObj>> Get()
         {
             await Task.CompletedTask;
-            return _list;
+            return List;
         }
 
         public async Task<TObj> Get(string id)
         {
             await Task.CompletedTask;
-            return _list.Find(x =>x.Data.Id == id);
+            return List.Find(x =>x.Data.Id == id);
 
         }
 
         public async Task Delete(string id)
         {
             await Task.CompletedTask;
-            var obj = _list.Find(x => x.Data.Id == id);
-            _list.Remove(obj);
+            var obj = List.Find(x => x.Data.Id == id);
+            List.Remove(obj);
 
         }
 
         public async Task Add(TObj obj)
         {
             await Task.CompletedTask;
-            _list.Add(obj);
+            List.Add(obj);
 
         }
 
         public async Task Update(TObj obj)
         {
             await Delete(obj.Data.Id);
-            _list.Add(obj);
+            List.Add(obj);
         }
 
 
